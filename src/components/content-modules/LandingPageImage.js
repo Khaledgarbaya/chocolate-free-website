@@ -7,7 +7,6 @@ class LandingPageImage extends Component {
     const {
       data
     } = this.props
-    console.log(data)
     return (
       <div className="header content-module">
       <Link to="/" rel="noopener">

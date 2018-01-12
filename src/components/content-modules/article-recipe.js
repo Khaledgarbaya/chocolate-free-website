@@ -2,8 +2,10 @@ import React, { Component} from 'react';
 import * as PropTypes from 'prop-types'
 
 class Recipe extends Component {
+  print () {
+    window.print()
+  }
   render() {
-    console.log(this.props.data)
     const {
       title,
       cookTime,
@@ -18,7 +20,7 @@ class Recipe extends Component {
       <section className='recipe'>
         <h2 className='title'> {title} </h2>
         <img src={image.file.url} />
-        <button className='print-button' onClick={window.print}>
+        <button className='print-button' onClick={()=>{this.print()}}>
           Print <span className='print-icon'></span>
         </button>
         <div className='prep'>

@@ -10,8 +10,6 @@ class PostCard extends Component {
       contentModules,
       category
     } = this.props.post
-    console.log(contentModules)
-
     return (
       <article className='post-card'>
         <img src={`${featureImage.file.url}?w=320&h=400`} width='320' height='400' alt=''/>

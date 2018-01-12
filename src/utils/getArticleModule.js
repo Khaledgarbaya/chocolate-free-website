@@ -9,7 +9,6 @@ const componentsMap = {
   ContentfulArticleImage: ArticleImage
 }
 export const getArticleModule = (module, index) => {
-  console.log(module)
   const Component = componentsMap[module.internal.type]
   if (Component) {
     return <Component data={module} key={index}/>

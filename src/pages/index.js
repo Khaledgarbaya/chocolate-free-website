@@ -14,7 +14,6 @@ const propTypes = {
 }
 
 const Article = ({ node }) => {
-  console.log(node)
   return (
     <div className="article">
       <ArticleHeader node={node} />
