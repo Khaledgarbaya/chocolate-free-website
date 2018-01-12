@@ -5,7 +5,8 @@ import ArticleHeader from '../components/ArticleHeader'
 import { rhythm } from '../utils/typography'
 import DisqusThread from '../components/DisqusThread'
 import Author from '../components/Author'
-import Recipe from '../components/Recipe'
+
+import getArticleModule from '../utils/getArticleModule'
 
 const propTypes = {
   data: PropTypes.object.isRequired,
@@ -26,7 +27,7 @@ class ArticleTemplate extends React.Component {
     return (
       <article className="article">
         <ArticleHeader node={article} />
-        <div dangerouslySetInnerHTML={{ __html: contentModules[0].copy.childMarkdownRemark.html }}/>
+        {contentModules.map((module, i) => getArticleModule(module, i))}
         <Author author={author} />
         <DisqusThread id={slug} path={slug} title={title}/>
       </article>
@@ -44,14 +45,66 @@ export const pageQuery = graphql`
       title
       slug
       contentModules {
-        copy {
-          childMarkdownRemark {
-            html
+        ... on ContentfulArticleRecipe {
+          internal {
+            type
+          }
+          serves
+          ingredients {
+            childMarkdownRemark {
+              html
+            }
+          }
+          instructions {
+            childMarkdownRemark {
+              html
+            }
+          }
+          image {
+            title
+            sizes(maxWidth: 800) {
+              ...GatsbyContentfulSizes
+            }
+            file {
+              url
+            }
+          }
+          title
+          totalTime
+          prepTime
+          cookTime
+        }
+        ... on ContentfulArticleCopy {
+          internal {
+            type
+          }
+          copy {
+            childMarkdownRemark {
+              html
+            }
           }
         }
-      }
+        ... on ContentfulArticleImage {
+          internal {
+            type
+          }
+          image {
+            title
+            sizes(maxWidth: 800) {
+              ...GatsbyContentfulSizes
+            }
+            file {
+              url
+            }
+          }
+        }
+      }      
       publishDate
       featureImage {
+        title
+        sizes(maxWidth: 800) {
+           ...GatsbyContentfulSizes
+        }
         responsiveResolution(width: 800) {
           src
           srcSet

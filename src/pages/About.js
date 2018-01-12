@@ -77,9 +77,30 @@ export const pageQuery = graphql`
           slug
           publishDate
           contentModules {
-            copy {
-              childMarkdownRemark {
-                html
+            ... on ContentfulArticleRecipe {
+              serves
+              ingredients {
+                id
+              }
+              instructions {
+                id
+              }
+              totalTime
+              prepTime
+              cookTime
+            }
+            ... on ContentfulArticleCopy {
+              copy {
+                childMarkdownRemark {
+                  html
+                }
+              }
+            }
+            ... on ContentfulArticleImage {
+              image {
+                file {
+                  url
+                }
               }
             }
           }

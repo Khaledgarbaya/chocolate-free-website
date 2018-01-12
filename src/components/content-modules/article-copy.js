@@ -4,9 +4,15 @@ import * as PropTypes from 'prop-types'
 class ArticleCopy extends Component {
   
   render () {
-    <section className='content-module'>
-      {this.props.data.copy}
-    </section>
+    const {
+      html,
+      excerpt
+    } = this.props.data.copy.childMarkdownRemark
+    return (
+    <section 
+    dangerouslySetInnerHTML={{__html:excerpt ? excerpt : html}} 
+    className='content-module' />
+  )
   }
 }
 

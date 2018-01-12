@@ -7,18 +7,19 @@ import SideBar from '../components/SideBar'
 import FeaturedPosts from '../components/content-modules/featured-posts'
 import LandingPageImage from '../components/content-modules/LandingPageImage'
 import getLandingPageModule from '../utils/getLandingPageModule'
+import Img from 'gatsby-image'
 
 const propTypes = {
   data: PropTypes.object.isRequired,
 }
 
 const Article = ({ node }) => {
+  console.log(node)
   return (
     <div className="article">
       <ArticleHeader node={node} />
-      {node.featureImage && <img
-        src={`${node.featureImage.file.url}?w=800`}
-      />}
+      {node.featureImage && <Img sizes={node.featureImage.sizes} alt={node.featureImage.title} title={node.featureImage.title} backgroundColor={"#f1f1f1"}/>}
+
       <p>{node.contentModules[0].copy.childMarkdownRemark.excerpt}</p>
       <Link rel='noopener' to={`/article/${node.slug}.html`}>Read more...</Link>
     </div>
@@ -58,6 +59,9 @@ export const pageQuery = graphql`
                 type
               }
               image {
+                sizes(maxWidth: 800){
+                 ...GatsbyContentfulSizes
+                }
                 file {
                   url
                 }
@@ -71,13 +75,40 @@ export const pageQuery = graphql`
                 title
                 slug
                 contentModules {
-                  copy {
-                    childMarkdownRemark {
-                      excerpt
+                  ... on ContentfulArticleRecipe {
+                    serves
+                    ingredients {
+                      id
+                    }
+                    instructions {
+                      id
+                    }
+                    totalTime
+                    prepTime
+                    cookTime
+                  }
+                  ... on ContentfulArticleCopy {
+                    copy {
+                      childMarkdownRemark {
+                        excerpt
+                      }
+                    }
+                  }
+                  ... on ContentfulArticleImage {
+                    image {
+                      sizes(maxWidth: 800){
+                       ...GatsbyContentfulSizes
+                      }
+                      file {
+                        url
+                      }
                     }
                   }
                 }
                 featureImage {
+                  sizes(maxWidth: 800){
+                   ...GatsbyContentfulSizes
+                  }
                   file {
                     url
                   }
@@ -100,13 +131,43 @@ export const pageQuery = graphql`
           section
           publishDate
           contentModules {
-            copy {
-              childMarkdownRemark {
-                excerpt
+            ... on ContentfulArticleRecipe {
+              serves
+              ingredients {
+                id
+              }
+              instructions {
+                id
+              }
+              totalTime
+              prepTime
+              cookTime
+            }
+            ... on ContentfulArticleCopy {
+              copy {
+                childMarkdownRemark {
+                  html
+                  excerpt
+                }
+              }
+            }
+            ... on ContentfulArticleImage {
+              image {
+                title
+                sizes(maxWidth: 800){
+                 ...GatsbyContentfulSizes
+                }
+                file {
+                  url
+                }
               }
             }
           }
           featureImage {
+            title
+            sizes(maxWidth: 800){
+             ...GatsbyContentfulSizes
+            }
             file {
               url
             }

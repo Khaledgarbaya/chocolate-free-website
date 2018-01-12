@@ -2,26 +2,30 @@ import React from 'react'
 import ArticleHeader from './ArticleHeader'
 import Link from 'gatsby-link'
 
+import getArticleModule from '../utils/getArticleModule'
+
 const Article = ({ node }) => {
+  const {
+    featureImage,
+    contentModules
+  } = node
   return (
-      <li>
 				<div className="c-article c-card u-marginBottomLarge">
           <ArticleHeader node={node} />
-          { node.featureImage &&
-            node.featureImage.responsiveResolution.src &&
+          { featureImage &&
+            featureImage.responsiveResolution.src &&
             <img
               style={{ margin: 0 }}
-              width={node.featureImage.responsiveResolution.width}
-              height={node.featureImage.responsiveResolution.height}
-              src={node.featureImage.responsiveResolution.src}
-              srcSet={node.featureImage.responsiveResolution.srcSet}
+              width={featureImage.responsiveResolution.width}
+              height={featureImage.responsiveResolution.height}
+              src={featureImage.responsiveResolution.src}
+              srcSet={featureImage.responsiveResolution.srcSet}
             />
           }
-          <div dangerouslySetInnerHTML={{ __html: node.contentModules[0].copy.childMarkdownRemark.html }}/>
+        {contentModules.map((module, i) => getArticleModule(module, i))}
 
 					<Link rel="noopener" to={`/article/${node.slug}.html`}>Read more...</Link>
 				</div>
-			</li>
   )
 }
 

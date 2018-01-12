@@ -41,3 +41,14 @@ h1, h2, h3, h4 {
   border-bottom: 1px solid #eaeaea;
 }
 
+@media print{
+  .article__header, .article__date, .content-module, #disqus_thread, .navigation, .print-button{
+    display:none;
+  }
+  .recipe {
+    margin: 0;
+  }
+  main {
+    display: block;
+  }
+}
