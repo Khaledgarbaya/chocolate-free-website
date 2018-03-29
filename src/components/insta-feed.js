@@ -11,13 +11,15 @@ class InstaFeed extends Component {
     fetch(url)
       .then(response => response.json())
       .then(data => {
-        this.setState({media: data.user.media.nodes.filter(mediaNode => mediaNode.is_video === false).slice(0, 9)})
+        console.log(data.graphql.user.edge_owner_to_timeline_media.edges)
+        this.setState({media: data.graphql.user.edge_owner_to_timeline_media.edges.filter(({node}) => node.is_video === false).slice(0, 9)})
+        console.log(this.state.media)
       })
   }
   render () {
     return (
       <div className='insta-feed'>
-        {this.state.media.map((mediaElement, i) => <img key={i} src={mediaElement.thumbnail_resources[0].src} />)}
+        {this.state.media.map(({node}, i) => <img key={i} src={node.thumbnail_resources[0].src} />)}
       </div>
     )
   }
