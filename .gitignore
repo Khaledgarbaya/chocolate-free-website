@@ -50,4 +50,4 @@ yarn.lock
 package-lock.json
 .vscode
 
-dist
+dist.DS_Store
