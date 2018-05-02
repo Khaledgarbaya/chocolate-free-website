@@ -15,7 +15,9 @@
     align-items: center;
     justify-content: center;
 }
-
+.menu ul {
+  margin-left: 0;
+}
 .menu ul li {
   display: inline-block;
   margin: 0 10px;
