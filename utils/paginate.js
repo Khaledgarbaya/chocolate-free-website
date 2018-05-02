@@ -1,7 +1,6 @@
 const _ = require(`lodash`)
 
 const paginationPath = (path, page, totalPages) => {
-  console.log(page)
   if (page === 0) {
     return '/'
   } else if (page < 0 || page >= totalPages) {
