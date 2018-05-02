@@ -57,11 +57,6 @@ class Html extends React.Component {
         <body>
           <div id="___gatsby" dangerouslySetInnerHTML={{ __html: body }} />
           {postBodyComponents}
-          <footer className="footer">
-          <div>
-          Copyright © 2017 Chocolate free website, proudly powered by <a href="https://www.contentful.com">Contentful</a> and <a href="https://github.com/gatsbyjs/gatsby">Gatsbyjs</a>.
-          </div>
-          </footer>
         </body>
       </html>
     )

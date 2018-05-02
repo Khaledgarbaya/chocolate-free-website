@@ -2,6 +2,7 @@ const _ = require(`lodash`)
 const Promise = require(`bluebird`)
 const path = require(`path`)
 const slash = require(`slash`)
+const paginate = require('./utils/paginate')
 
 // Implement the Gatsby API “createPages”. This is
 // called after the Gatsby bootstrap is finished so you have
@@ -33,6 +34,15 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
           reject(result.errors)
         }
         const articleTemplate = path.resolve(`./src/templates/article.js`)
+        const pageTemplate = path.resolve('./src/templates/Home/index.js')
+        paginate(
+          createPage,
+          pageTemplate,
+          '/article',
+          result.data.allContentfulArticle.edges.length,
+          3
+        )
+        console.log('after paginate')
         _.each(result.data.allContentfulArticle.edges, edge => {
           // Gatsby uses Redux to manage its internal state.
           // Plugins and sites can use functions like "createPage"
@@ -58,7 +68,6 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
 // called after every page is created.
 exports.onCreatePage = async ({ page, boundActionCreators }) => {
   const { createPage } = boundActionCreators
-  console.log(page)
   return new Promise((resolve, reject) => {
     if (page.path.match(/^\/HorsSujet/)) {
       page.matchPath = "/hors-sujet.html"

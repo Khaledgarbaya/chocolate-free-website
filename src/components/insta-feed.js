@@ -15,6 +15,7 @@ class InstaFeed extends Component {
         this.setState({media: data.graphql.user.edge_owner_to_timeline_media.edges.filter(({node}) => node.is_video === false).slice(0, 9)})
         console.log(this.state.media)
       })
+      .catch(e => console.log)
   }
   render () {
     return (
