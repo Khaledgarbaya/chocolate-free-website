@@ -40,11 +40,11 @@ class Html extends React.Component {
           <meta httpEquiv="Cache-control" content="no-cache, no-store, must-revalidate" /> 
           <meta httpEquiv="Pragma" content="no-cached" />
           <title>Chocolate Free</title>
-          <link rel="apple-touch-icon" sizes="180x180" href="https://chocolate-free.com/assets/apple-touch-icon.png"/>
-          <link rel="icon" type="image/png" href="https://chocolate-free.com/assets/favicon-32x32.png" sizes="32x32"/>
-          <link rel="icon" type="image/png" href="https://chocolate-free.com/assets/favicon-16x16.png" sizes="16x16"/>
-          <link rel="manifest" href="https://chocolate-free.com/assets/manifest.json"/>
-          <link rel="mask-icon" href="https://chocolate-free.com/assets/safari-pinned-tab.svg" color="#5bbad5"/>
+          <link rel="apple-touch-icon" sizes="180x180" href="https://chocolate-free.com/apple-touch-icon.png"/>
+          <link rel="icon" type="image/png" href="https://chocolate-free.com/favicon-32x32.png" sizes="32x32"/>
+          <link rel="icon" type="image/png" href="https://chocolate-free.com/favicon-16x16.png" sizes="16x16"/>
+          <link rel="manifest" href="https://chocolate-free.com/manifest.json"/>
+          <link rel="mask-icon" href="https://chocolate-free.com/safari-pinned-tab.svg" color="#5bbad5"/>
           <meta name="theme-color" content="#e8e8e8"/>
           <meta property="fb:pages" content="182110772226120" />
           <meta property="fb:article_style" content="Chocolate-free-instant-article"/>
