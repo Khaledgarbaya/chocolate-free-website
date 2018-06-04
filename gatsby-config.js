@@ -2,6 +2,7 @@ module.exports = {
   siteMetadata: {
     siteUrl: 'https://chocolate-free.com/',
     title: 'Chocolate Free',
+    description: 'Chocolate free website'
   },
   plugins: [
     {
@@ -19,6 +20,66 @@ module.exports = {
     },
     {
       resolve: 'gatsby-plugin-sitemap'
+    },
+    {
+      resolve: 'gatsby-plugin-feed',
+      options: {
+        query: `
+        {
+          site {
+            siteMetadata {
+              title
+              description
+              siteUrl
+              site_url: siteUrl
+            }
+          }
+        }
+      `,
+        feeds: [
+          {
+            serialize: ({ query: { site, allContentfulArticle } }) => {
+              return allContentfulArticle.edges.map(edge => {
+                return Object.assign({}, edge.node, {
+                  description: edge.node.contentModules[0].copy.childMarkdownRemark.excerpt,
+                  url: site.siteMetadata.siteUrl + '/article/' + edge.node.slug,
+                  guid: site.siteMetadata.siteUrl + '/article/' + edge.node.slug,
+                });
+              });
+            },
+            query: `
+            {
+              allContentfulArticle(
+                limit: 1000,
+                sort: { order: DESC, fields: [publishDate] },
+              ) {
+                edges {
+                  node {
+                    contentModules {
+                      ... on ContentfulArticleCopy {
+                        internal {
+                          type
+                        }
+                        copy {
+                          childMarkdownRemark {
+                            html
+                            excerpt
+                          }
+                        }
+                      }
+                    }
+                    slug 
+                    title
+                    date: publishDate
+                  }
+                }
+              }
+            }
+          `,
+            output: "/rss.xml",
+          },
+        ],
+      }
     },
     {
       resolve: 'gatsby-plugin-manifest',
