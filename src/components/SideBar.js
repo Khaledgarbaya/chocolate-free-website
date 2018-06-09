@@ -16,7 +16,7 @@ class SideBar extends Component {
         </div>
         <div className="widget widget-text">
           <h3 className='widget-title'> Meet Amal</h3>
-          <Link to='/about'>
+          <Link to='/about.html'>
             <img src='http://images.contentful.com/0w6gaytm0wfv/2q5y0JFFcYseCSEcGke2Cy/b3515912ff2e6e3140fc5c475a72899f/Vacation_please_don_t_go_____________________italy__follow__follow4follow__likeforlike__like4like__likes__holidays__summervi.jpg?w=230' width='230' alt='Amal Nasri'/>
           </Link>
         </div>
