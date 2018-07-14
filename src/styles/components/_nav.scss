@@ -1,19 +1,19 @@
 /* Navigation Menu */
 .navigation {
-    position: fixed;
-    background: #ffffff;
-    border-top: 5px solid #130216;
-    border-bottom: 1px solid #eaeaea;
-    z-index: 999999999999;
-    min-width: 200px;
-    margin: 0 auto 0px auto;
-    width: 100%;
-    line-height: 2;
-    text-align: center;
-    height: 70px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  position: fixed;
+  background: #ffffff;
+  border-top: 5px solid #130216;
+  border-bottom: 1px solid #eaeaea;
+  z-index: 999999999999;
+  min-width: 200px;
+  margin: 0 auto 0px auto;
+  width: 100%;
+  line-height: 2;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap
 }
 .menu ul {
   margin-left: 0;

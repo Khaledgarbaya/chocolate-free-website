@@ -24,3 +24,22 @@ a, a:visited {
 a:hover {
   color: #f96;
 }
+
+.grid {
+  display: grid;
+  grid-template-columns: 20px 1fr 30% 20px;
+  grid-template-areas: 
+  ". header header . "
+  ". featured-posts featured-posts . "
+  ". content side-bar ."
+  ". footer footer .";
+  min-height: 100vh;
+  @media screen and (max-width: $break-large) {
+    grid-template-areas: 
+    ". header header . "
+    ". featured-posts featured-posts . "
+    ". side-bar side-bar ."
+    ". content content ."
+    ". footer footer .";
+  }
+}

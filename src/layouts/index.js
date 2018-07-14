@@ -21,6 +21,9 @@ const Header = () => {
               <li>
                 <Link to='/hors-sujet.html'>Hors Sujet</Link>
               </li>
+              <li>
+                <Link to='/portfolio.html'>Portfolio</Link>
+              </li>
               </ul>
         </nav>
         <nav className="social-navigation menu" role="navigation">

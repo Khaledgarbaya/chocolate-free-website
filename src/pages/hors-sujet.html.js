@@ -2,21 +2,35 @@ import React from 'react'
 import Link from 'gatsby-link'
 import * as PropTypes from 'prop-types'
 import { rhythm } from '../utils/typography'
-import Article from '../components/Article'
+import SingleArticle from '../components/SingleArticle'
 import SideBar from '../components/SideBar'
+import getLandingPageModule from '../utils/getLandingPageModule'
+import ArticleHeader from '../components/ArticleHeader'
+import Img from 'gatsby-image'
 
 const propTypes = {
   data: PropTypes.object.isRequired,
 }
 
+const Article = ({ node }) => {
+  return (
+    <div className="article">
+      <ArticleHeader node={node} />
+      {node.featureImage && <Img sizes={node.featureImage.sizes} alt={node.featureImage.title} title={node.featureImage.title} backgroundColor={"#f1f1f1"}/>}
+
+      <p>{node.contentModules[0].copy.childMarkdownRemark.excerpt}</p>
+      <Link rel='noopener' to={`/article/${node.slug}.html`}>Read more...</Link>
+    </div>
+  )
+}
+
 class HorsSujetPage extends React.Component {
   render() {
     const articles = this.props.data.allContentfulArticle.edges
+    const contentModules = this.props.data.allContentfulLandingPage.edges[0].node.contentModules
     return (
       <div className="grid">
-        <div className="featured-posts" >
-          <h1> Featured Posts </h1>
-        </div>
+        {contentModules.map((module, i) => getLandingPageModule(module, i))}
         <div className="content">
           {articles.map(({ node }, i) => <Article node={node} key={i} />)}
         </div>
@@ -32,9 +46,43 @@ export default HorsSujetPage
 
 export const pageQuery = graphql`
   query HorsSujetPageQuery {
+    allContentfulLandingPage(filter: {
+      slug: {eq: "hors-sujet-page"}
+    }){
+      edges {
+        node {
+          contentModules {
+            ... on ContentfulLandingPageImage {
+              internal {
+                type
+              }
+              image {
+                file {
+                  url
+                }
+              }
+            } 
+            ... on ContentfulLandingPageFeaturedPosts {
+              internal {
+                type
+              }
+               posts {
+                title
+                slug
+                featureImage {
+                  file {
+                    url
+                  }
+                }
+              }
+            } 
+          }        
+        }
+      }
+    }
     allContentfulArticle(filter: {
-        node_locale: {eq: "en-US"},
-        section: {eq:"horsSujet"}
+      node_locale: { eq: "en-US" },
+      section: { eq: "horsSujet" }
     }) {
       edges {
         node {
@@ -44,9 +92,6 @@ export const pageQuery = graphql`
           publishDate
           contentModules {
             ... on ContentfulArticleRecipe {
-              internal {
-                type
-              }
               serves
               ingredients {
                 id
@@ -59,19 +104,14 @@ export const pageQuery = graphql`
               cookTime
             }
             ... on ContentfulArticleCopy {
-              internal {
-                type
-              }
               copy {
                 childMarkdownRemark {
+                  html
                   excerpt
                 }
               }
             }
             ... on ContentfulArticleImage {
-              internal {
-                type
-              }
               image {
                 file {
                   url
@@ -80,11 +120,11 @@ export const pageQuery = graphql`
             }
           }
           featureImage {
-            responsiveResolution(width: 800) {
-              src
-              srcSet
-              height
-              width
+            sizes(maxWidth: 800){
+             ...GatsbyContentfulSizes
+            }
+            file {
+              url
             }
           }
         }
