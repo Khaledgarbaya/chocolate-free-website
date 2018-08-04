@@ -39,7 +39,6 @@ class Html extends React.Component {
           <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
           <meta httpEquiv="Cache-control" content="no-cache, no-store, must-revalidate" /> 
           <meta httpEquiv="Pragma" content="no-cached" />
-          <title>Chocolate Free</title>
           <link rel="apple-touch-icon" sizes="180x180" href="https://chocolate-free.com/apple-touch-icon.png"/>
           <link rel="icon" type="image/png" href="https://chocolate-free.com/favicon-32x32.png" sizes="32x32"/>
           <link rel="icon" type="image/png" href="https://chocolate-free.com/favicon-16x16.png" sizes="16x16"/>
@@ -47,8 +46,7 @@ class Html extends React.Component {
           <link rel="mask-icon" href="https://chocolate-free.com/safari-pinned-tab.svg" color="#5bbad5"/>
           <meta name="theme-color" content="#e8e8e8"/>
           <meta property="fb:pages" content="182110772226120" />
-          <meta property="fb:article_style" content="Chocolate-free-instant-article"/>
-          <meta name="description" content="Chocolate free is a culinary diary of a chocoholic, sweet tooth young lady trying to re-create new sweet fruity and chocolaty version of some classic, or not, deserts."/>
+
           <meta name="author" content="Amal Nasri"/>
           <meta name="p:domain_verify" content="bfdc5a3211578236b01ad516ea662d6b"/>
           <TypographyStyle typography={typography} />

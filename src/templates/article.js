@@ -5,7 +5,10 @@ import ArticleHeader from '../components/ArticleHeader'
 import { rhythm } from '../utils/typography'
 import DisqusThread from '../components/DisqusThread'
 import Author from '../components/Author'
-
+import OG from '../components/seo/og'
+import Article from '../components/seo/article'
+import General from '../components/seo/general'
+import Twitter from '../components/seo/twitter'
 import getArticleModule from '../utils/getArticleModule'
 
 const propTypes = {
@@ -22,11 +25,41 @@ class ArticleTemplate extends React.Component {
       featureImage,
       author,
       publishDate,
+      updatedAt,
       section
     } = article
+    console.log(contentModules[0].copy.childMarkdownRemark.excerpt)
     return (
       <div className="content">
         <article className="article">
+          <OG 
+            title={title}
+            locale='en-US'
+            type='article'
+            description={contentModules[0].copy.childMarkdownRemark.excerpt}
+            url={`https://chocolate-free.com/article/${slug}`}
+            siteName='Chocolate Free'
+            updateTime={updatedAt}
+            publishedTime={publishDate}
+            image={`https:${featureImage.file.url}?w=1200&h=630`}
+            imageSecure={`https:${featureImage.file.url}?w=1200&h=630`}
+          />
+
+          <Article 
+            updateTime={updatedAt}
+            publishedTime={publishDate}
+            url={`https://chocolate-free.com/article/${slug}`}
+          />
+
+          <Twitter 
+            title={title}
+            description={contentModules[0].copy.childMarkdownRemark.excerpt}
+            image={`https:${featureImage.file.url}?w=1200&h=630`}
+          />
+          <General
+            title={title}
+            description={contentModules[0].copy.childMarkdownRemark.excerpt}
+          />
           <ArticleHeader node={article} />
           {contentModules.map((module, i) => getArticleModule(module, i))}
           <Author author={author} />
@@ -83,6 +116,7 @@ export const pageQuery = graphql`
           copy {
             childMarkdownRemark {
               html
+              excerpt
             }
           }
         }
@@ -128,10 +162,14 @@ export const pageQuery = graphql`
         }
       }      
       publishDate
+      updatedAt
       featureImage {
         title
         sizes(maxWidth: 500) {
            ...GatsbyContentfulSizes
+        }
+        file {
+          url
         }
         responsiveResolution(width: 500) {
           src

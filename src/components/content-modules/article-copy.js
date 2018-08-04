@@ -10,7 +10,7 @@ class ArticleCopy extends Component {
     } = this.props.data.copy.childMarkdownRemark
     return (
     <section 
-    dangerouslySetInnerHTML={{__html:excerpt ? excerpt : html}} 
+    dangerouslySetInnerHTML={{__html: html}} 
     className='content-module' />
   )
   }

@@ -22,6 +22,9 @@ module.exports = {
       resolve: 'gatsby-plugin-sitemap'
     },
     {
+      resolve: 'gatsby-plugin-react-helmet'
+    },
+    {
       resolve: 'gatsby-plugin-feed',
       options: {
         query: `
