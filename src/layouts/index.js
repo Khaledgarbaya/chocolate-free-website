@@ -3,6 +3,7 @@ import Link from "gatsby-link"
 import * as PropTypes from "prop-types"
 import styles from '../styles/main.scss'
 import { rhythm } from "../utils/typography"
+import Person from '../components/seo/person'
 
 const propTypes = {
   children: PropTypes.func.isRequired,
@@ -10,6 +11,7 @@ const propTypes = {
 const Header = () => {
   return (
     <div className='navigation'>
+      <Person />
         <nav className="main-navigation menu" role="navigation">
             <ul>
               <li>
