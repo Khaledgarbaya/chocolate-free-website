@@ -28,7 +28,7 @@ class ArticleTemplate extends React.Component {
       updatedAt,
       section
     } = article
-    console.log(contentModules[0].copy.childMarkdownRemark.excerpt)
+    const featuredImageUrl = ( featureImage && featureImage.file ) ? featureImage.file.url : '' 
     return (
       <div className="content">
         <article className="article">
@@ -41,8 +41,8 @@ class ArticleTemplate extends React.Component {
             siteName='Chocolate Free'
             updateTime={updatedAt}
             publishedTime={publishDate}
-            image={`https:${featureImage.file.url}?w=1200&h=630`}
-            imageSecure={`https:${featureImage.file.url}?w=1200&h=630`}
+            image={`https:${featuredImageUrl}?w=1200&h=630`}
+            imageSecure={`https:${featuredImageUrl}?w=1200&h=630`}
           />
 
           <Article 
@@ -54,7 +54,7 @@ class ArticleTemplate extends React.Component {
           <Twitter 
             title={title}
             description={contentModules[0].copy.childMarkdownRemark.excerpt}
-            image={`https:${featureImage.file.url}?w=1200&h=630`}
+            image={`https:${featuredImageUrl}?w=1200&h=630`}
           />
           <General
             title={title}
