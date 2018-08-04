@@ -5,6 +5,7 @@ import { rhythm } from '../utils/typography'
 import SingleArticle from '../components/SingleArticle'
 import SideBar from '../components/SideBar'
 import getLandingPageModule from '../utils/getLandingPageModule'
+import Helmet from 'react-helmet'
 
 const propTypes = {
   data: PropTypes.object.isRequired,
@@ -15,6 +16,10 @@ class PortfolioPage extends React.Component {
     const contentModules = this.props.data.allContentfulLandingPage.edges[0].node.contentModules
     return (
       <div className="grid portfolio">
+      <Helmet>
+        <title>Protfolio | Chocolate Free</title>
+        <meta name="description" content="Chocolate free is a culinary diary of a chocoholic, sweet tooth young lady trying to re-create new sweet fruity and chocolaty version of some classic, or not, deserts."/>
+      </Helmet>
         {contentModules.map((module, i) => getLandingPageModule(module, i))}
       </div>
     )

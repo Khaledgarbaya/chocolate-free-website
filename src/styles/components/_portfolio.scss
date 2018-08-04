@@ -12,6 +12,8 @@
   align-items: center;
   justify-content: center;
   padding: 1.5em;
+  width: 100%;
+  max-width: 1310px;
 }
 .portfolio .description {
   grid-column: 1/-1;

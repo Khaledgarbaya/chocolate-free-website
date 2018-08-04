@@ -7,6 +7,7 @@ import SideBar from '../components/SideBar'
 import getLandingPageModule from '../utils/getLandingPageModule'
 import ArticleHeader from '../components/ArticleHeader'
 import Img from 'gatsby-image'
+import Helmet from 'react-helmet'
 
 const propTypes = {
   data: PropTypes.object.isRequired,
@@ -15,6 +16,10 @@ const propTypes = {
 const Article = ({ node }) => {
   return (
     <div className="article">
+      <Helmet>
+        <title>Hors sujet | Chocolate Free</title>
+        <meta name="description" content="Chocolate free is a culinary diary of a chocoholic, sweet tooth young lady trying to re-create new sweet fruity and chocolaty version of some classic, or not, deserts."/>
+      </Helmet>
       <ArticleHeader node={node} />
       {node.featureImage && <Img sizes={node.featureImage.sizes} alt={node.featureImage.title} title={node.featureImage.title} backgroundColor={"#f1f1f1"}/>}
 

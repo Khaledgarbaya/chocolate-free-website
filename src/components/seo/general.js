@@ -8,7 +8,7 @@ function General({
 }) {
   return (
     <Helmet>
-      <title>{title}</title>
+      <title>{title} | Chocolate Free</title>
       <meta name="description" content={description} />
     </Helmet>
   );
