@@ -42,8 +42,8 @@ module.exports = {
               return allContentfulArticle.edges.map(edge => {
                 return Object.assign({}, edge.node, {
                   description: edge.node.contentModules[0].copy.childMarkdownRemark.excerpt,
-                  url: site.siteMetadata.siteUrl + '/article/' + edge.node.slug,
-                  guid: site.siteMetadata.siteUrl + '/article/' + edge.node.slug,
+                  url: site.siteMetadata.siteUrl + 'article/' + edge.node.slug +'.html',
+                  guid: site.siteMetadata.siteUrl + 'article/' + edge.node.slug + '.html',
                 });
               });
             },
