@@ -20,7 +20,17 @@
 .article__headline a:hover {
   color: #f96;
 }
-
+.article__item {
+  display:flex;
+  flex-wrap: wrap;
+}
+.article__teaser {
+  width: 400px;
+  padding-left: 1em; 
+}
+.article__item img {
+  display:block;
+}
 .article__date {
   display: flex;
   justify-content: flex-start;

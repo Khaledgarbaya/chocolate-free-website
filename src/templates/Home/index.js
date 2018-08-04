@@ -15,16 +15,18 @@ const propTypes = {
 }
 const Article = ({ node }) => {
   return (
-    <div className="article">
+    <div className="article__item">
       <Helmet>
         <title>Chocolate Free</title>
         <meta name="description" content="Chocolate free is a culinary diary of a chocoholic, sweet tooth young lady trying to re-create new sweet fruity and chocolaty version of some classic, or not, deserts."/>
       </Helmet>
-      <ArticleHeader node={node} />
-      {node.featureImage && <Img sizes={node.featureImage.sizes} alt={node.featureImage.title} title={node.featureImage.title} backgroundColor={"#f1f1f1"}/>}
+      {node.featureImage && <img src={`${node.featureImage.file.url}?w=600&h=400`} alt={node.featureImage.title} title={node.featureImage.title}/>}
 
-      <p className='article__excerpt'>{node.contentModules[0].copy.childMarkdownRemark.excerpt}</p>
-      <Link rel='noopener' to={`/article/${node.slug}.html`}>Read more...</Link>
+      <div className="article__teaser">
+        <ArticleHeader node={node} />
+        <p className='article__excerpt'>{node.contentModules[0].copy.childMarkdownRemark.excerpt}</p>
+        <Link to={`/article/${node.slug}.html`}>Read more...</Link>
+      </div>
     </div>
   )
 }
