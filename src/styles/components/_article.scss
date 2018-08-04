@@ -1,14 +1,14 @@
 .article {
- max-width: 800px; 
- margin: 0 auto;
+  width: 100%;
+  margin-bottom: 50px;
 }
 
 .article__header {
-
+  margin-bottom: 10px;
 }
 
-.article__headline {
-
+.article__excerpt {
+  padding: 10px 0;
 }
 
 .article__headline a {

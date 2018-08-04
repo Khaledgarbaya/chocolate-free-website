@@ -18,7 +18,7 @@ const Article = ({ node }) => {
       <ArticleHeader node={node} />
       {node.featureImage && <Img sizes={node.featureImage.sizes} alt={node.featureImage.title} title={node.featureImage.title} backgroundColor={"#f1f1f1"}/>}
 
-      <p>{node.contentModules[0].copy.childMarkdownRemark.excerpt}</p>
+      <p className='article__excerpt'>{node.contentModules[0].copy.childMarkdownRemark.excerpt}</p>
       <Link rel='noopener' to={`/article/${node.slug}.html`}>Read more...</Link>
     </div>
   )

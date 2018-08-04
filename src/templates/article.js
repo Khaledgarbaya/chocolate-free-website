@@ -25,12 +25,14 @@ class ArticleTemplate extends React.Component {
       section
     } = article
     return (
-      <article className="article">
-        <ArticleHeader node={article} />
-        {contentModules.map((module, i) => getArticleModule(module, i))}
-        <Author author={author} />
-        <DisqusThread id={slug} path={slug} title={title}/>
-      </article>
+      <div className="content">
+        <article className="article">
+          <ArticleHeader node={article} />
+          {contentModules.map((module, i) => getArticleModule(module, i))}
+          <Author author={author} />
+          <DisqusThread id={slug} path={slug} title={title}/>
+        </article>
+      </div>
     )
   }
 }
