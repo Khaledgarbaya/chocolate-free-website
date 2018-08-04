@@ -64,7 +64,7 @@ export const pageQuery = graphql`
           }
           image {
             title
-            sizes(maxWidth: 800) {
+            sizes(maxWidth: 500) {
               ...GatsbyContentfulSizes
             }
             file {
@@ -86,13 +86,39 @@ export const pageQuery = graphql`
             }
           }
         }
+        ... on ContentfulArticleTwoImages {
+            internal {
+              type
+            }
+            left {
+              title
+              description
+              sizes(maxWidth: 300) {
+                ...GatsbyContentfulSizes
+              }
+              file {
+                url
+              }
+            }
+            right {
+              title
+              description
+              sizes(maxWidth: 300) {
+                ...GatsbyContentfulSizes
+              }
+              file {
+                url
+              }
+            }
+
+          }
         ... on ContentfulArticleImage {
           internal {
             type
           }
           image {
             title
-            sizes(maxWidth: 800) {
+            sizes(maxWidth: 500) {
               ...GatsbyContentfulSizes
             }
             file {
@@ -104,10 +130,10 @@ export const pageQuery = graphql`
       publishDate
       featureImage {
         title
-        sizes(maxWidth: 800) {
+        sizes(maxWidth: 500) {
            ...GatsbyContentfulSizes
         }
-        responsiveResolution(width: 800) {
+        responsiveResolution(width: 500) {
           src
           srcSet
           height

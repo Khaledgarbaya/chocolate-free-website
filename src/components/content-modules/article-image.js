@@ -10,8 +10,8 @@ class ArticleImage extends Component {
     } = this.props.data
     // TODO: add tracer effect to the image ?
     return (
-    <section className='content-module'>
-<Img sizes={image.sizes} alt={image.title} title={image.title} backgroundColor={"#ffffff"} />
+    <section className='content-module one-image'>
+    <img src={`${image.file.url}?w=650`} alt={image.title} title={image.title} />
     </section>
     )
   }

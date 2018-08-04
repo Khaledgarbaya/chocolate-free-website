@@ -26,10 +26,10 @@ class SideBar extends Component {
             <form action="https://chocolate-free.us17.list-manage.com/subscribe/post?u=a98782a9b211f2e039434108c&amp;id=a6247b2b13" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" className="validate" target="_blank" noValidate>
               <div id="mc_embed_signup_scroll">
                 <div className="mc-field-group">
-                  <input type="email" defaultValue="ENTER YOUR EMAIL" name="EMAIL" className="required email" id="mce-EMAIL" />
+                  <input type="email" autoComplete="email" defaultValue="ENTER YOUR EMAIL" name="EMAIL" className="required email" id="mce-EMAIL" />
                 </div>
                 <div className="mc-field-group">
-                  <input type="text" defaultValue="ENTER YOUR NAME" name="FNAME" className="" id="mce-FNAME" />
+                  <input type="text" defaultValue="ENTER YOUR NAME" autoComplete="name" name="FNAME" className="" id="mce-FNAME" />
                 </div>
                 <div id="mce-responses" className="clear">
                   <div className="response" id="mce-error-response" style={{display: 'none'}}></div>
