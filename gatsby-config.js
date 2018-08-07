@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    siteUrl: 'https://chocolate-free.com/',
+    siteUrl: 'https://chocolate-free.com',
     title: 'Chocolate Free',
     description: 'Chocolate free website'
   },
@@ -45,8 +45,8 @@ module.exports = {
               return allContentfulArticle.edges.map(edge => {
                 return Object.assign({}, edge.node, {
                   description: edge.node.contentModules[0].copy.childMarkdownRemark.excerpt,
-                  url: site.siteMetadata.siteUrl + 'article/' + edge.node.slug +'.html',
-                  guid: site.siteMetadata.siteUrl + 'article/' + edge.node.slug + '.html',
+                  url: site.siteMetadata.siteUrl + '/article/' + edge.node.slug +'.html',
+                  guid: site.siteMetadata.siteUrl + '/article/' + edge.node.slug + '.html',
                 });
               });
             },
