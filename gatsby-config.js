@@ -109,6 +109,7 @@ module.exports = {
     },
     'gatsby-plugin-offline',
     'gatsby-transformer-remark',
-    'gatsby-plugin-sass'
+    'gatsby-plugin-sass',
+    'gatsby-plugin-netlify'
   ],
 }
