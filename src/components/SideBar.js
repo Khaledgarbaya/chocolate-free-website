@@ -1,6 +1,7 @@
 import React, { Component} from 'react';
 import Link from 'gatsby-link'
 import InstaFeed from './insta-feed'
+import Search from './search'
 
 class SideBar extends Component {
   render() {
@@ -8,11 +9,7 @@ class SideBar extends Component {
       <div className="side-bar">
         <div className="search widget">
           <h3 className='widget-title'>Looking for something?</h3>
-          <form role='search' className='search-form'>
-            <div className='searchbox'>
-              <input type="search" defaultValue='SEARCH'/>
-            </div>
-          </form>
+          <Search />
         </div>
         <div className="widget widget-text">
           <h3 className='widget-title'> Meet Amal</h3>
