@@ -20,7 +20,7 @@ const Article = ({ node }) => {
         <title>Chocolate Free</title>
         <meta name="description" content="Chocolate free is a culinary diary of a chocoholic, sweet tooth young lady trying to re-create new sweet fruity and chocolaty version of some classic, or not, deserts."/>
       </Helmet>
-      {node.featureImage && <img src={`${node.featureImage.file.url}?w=600&h=400`} alt={node.featureImage.title} title={node.featureImage.title}/>}
+      {node.featureImage && <img src={`${node.featureImage.file.url}?w=267&h=400&fit=fill&bg=rgb:ffffff`} alt={node.featureImage.title} title={node.featureImage.title} width='267' height='400'/>}
 
       <div className="article__teaser">
         <ArticleHeader node={node} />
