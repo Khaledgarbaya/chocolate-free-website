@@ -29,18 +29,18 @@ function RecipeAutoComplete({refine, hits}) {
             <div>
               {hits.map((item, index) =>
                 <div
-                  key={item.objectID}
+                  key={item.title}
                   {...getItemProps({
                     item,
                     index,
                     style: {
                       backgroundColor:
-                        highlightedIndex === index ? 'gray' : 'white',
+                      highlighteIndex === index ? 'gray' : 'white',
                       fontWeight: selectedItem === item ? 'bold' : 'normal',
                     },
                   })}
                 >
-                  <Highlight attributeName="name" hit={item} tagName="mark" />
+                  <Highlight attributeName="title" hit={item} />
                 </div>,
               )}
             </div>}

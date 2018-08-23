@@ -110,6 +110,51 @@ module.exports = {
     'gatsby-plugin-offline',
     'gatsby-transformer-remark',
     'gatsby-plugin-sass',
+    {
+      resolve: 'gatsby-plugin-algolia',
+      options: {
+        appId: process.env.CHF_ALGOLIA_APP_ID,
+        apiKey: process.env.CHF_ALGOLIA_ADMIN_KEY,
+        indexName: process.env.CHF_ALGOLIA_INDEX_NAME,
+        queries: [
+          {
+            transformer: ({ data }) => {
+              const nodes = data.allContentfulArticle.edges.map(({node}) => {
+                return {
+                  objectID: node.id,
+                  title: node.title,
+                  slug: node.slug,
+                  section: node.section,
+                  content: node.contentModules.map(node => node.copy ? node.copy.copy : '').join('')
+                }
+              })
+             return nodes 
+            },
+            query: `
+            {
+              allContentfulArticle(limit: 1000) {
+                edges {
+                  node {
+                    id
+                    title
+                    slug
+                    section
+                    contentModules {
+                      ... on ContentfulArticleCopy {
+                        copy {
+                          copy
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+            `
+          }
+        ]
+      }
+    }
     'gatsby-plugin-netlify'
   ],
 }
