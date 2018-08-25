@@ -19,6 +19,7 @@ function RecipeAutoComplete({refine, hits}) {
       }) =>
         <div>
           <input
+            placeholder="Type a search term"
             {...getInputProps({
               onChange(e) {
                 refine(e.target.value)
@@ -60,6 +61,7 @@ function Search () {
       indexName="chocolate-free"
     >
       <AutoCompleteWithData />
+      <img src="https://www.algolia.com/static_assets/images/pricing/pricing_new/algolia-powered-by-14773f38.svg" class="" alt="Powered by Algolia" width="130" height="18" />
     </InstantSearch>
   )
 }
