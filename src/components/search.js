@@ -20,6 +20,7 @@ function RecipeAutoComplete({refine, hits}) {
         <div>
           <input
             placeholder="Type a search term"
+            className="search-input"
             {...getInputProps({
               onChange(e) {
                 refine(e.target.value)
