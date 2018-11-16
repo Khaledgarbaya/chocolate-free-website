@@ -8,8 +8,8 @@ const paginate = require('./utils/paginate')
 // called after the Gatsby bootstrap is finished so you have
 // access to any information necessary to programatically
 // create pages.
-exports.createPages = ({ graphql, boundActionCreators }) => {
-  const { createPage } = boundActionCreators
+exports.createPages = ({ graphql, actions }) => {
+  const { createPage } = actions
   return new Promise((resolve, reject) => {
     // The “graphql” function allows us to run arbitrary
     // queries against the local Contentful graphql schema. Think of
@@ -66,8 +66,8 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
 }
 // Implement the Gatsby API “onCreatePage”. This is
 // called after every page is created.
-exports.onCreatePage = async ({ page, boundActionCreators }) => {
-  const { createPage } = boundActionCreators
+exports.onCreatePage = async ({ page, actions }) => {
+  const { createPage } = actions
   return new Promise((resolve, reject) => {
     if (page.path.match(/^\/HorsSujet/)) {
       page.matchPath = "/hors-sujet.html"

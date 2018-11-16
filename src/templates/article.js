@@ -1,5 +1,5 @@
 import React from 'react'
-import Link from 'gatsby-link'
+import {graphql, Link} from 'gatsby'
 import * as PropTypes from "prop-types"
 import ArticleHeader from '../components/ArticleHeader'
 import { rhythm } from '../utils/typography'
@@ -10,6 +10,7 @@ import Article from '../components/seo/article'
 import General from '../components/seo/general'
 import Twitter from '../components/seo/twitter'
 import getArticleModule from '../utils/getArticleModule'
+import Layout from '../components/layout'
 
 const propTypes = {
   data: PropTypes.object.isRequired,
@@ -30,20 +31,21 @@ class ArticleTemplate extends React.Component {
     } = article
     const featuredImageUrl = ( featureImage && featureImage.file ) ? featureImage.file.url : '' 
     return (
-      <div className="content">
-        <article className="article">
-          <OG 
-            title={title}
-            locale='en-US'
-            type='article'
-            description={contentModules[0].copy.childMarkdownRemark.excerpt}
-            url={`https://chocolate-free.com/article/${slug}`}
-            siteName='Chocolate Free'
-            updateTime={updatedAt}
-            publishedTime={publishDate}
-            image={`https:${featuredImageUrl}?w=1200&h=630`}
-            imageSecure={`https:${featuredImageUrl}?w=1200&h=630`}
-          />
+      <Layout>
+        <div className="content">
+          <article className="article">
+            <OG 
+              title={title}
+              locale='en-US'
+              type='article'
+              description={contentModules[0].copy.childMarkdownRemark.excerpt}
+              url={`https://chocolate-free.com/article/${slug}`}
+              siteName='Chocolate Free'
+              updateTime={updatedAt}
+              publishedTime={publishDate}
+              image={`https:${featuredImageUrl}?w=1200&h=630`}
+              imageSecure={`https:${featuredImageUrl}?w=1200&h=630`}
+            />
 
           <Article 
             updateTime={updatedAt}
@@ -51,21 +53,22 @@ class ArticleTemplate extends React.Component {
             url={`https://chocolate-free.com/article/${slug}`}
           />
 
-          <Twitter 
-            title={title}
-            description={contentModules[0].copy.childMarkdownRemark.excerpt}
-            image={`https:${featuredImageUrl}?w=1200&h=630`}
-          />
-          <General
-            title={title}
-            description={contentModules[0].copy.childMarkdownRemark.excerpt}
-          />
-          <ArticleHeader node={article} />
-          {contentModules.map((module, i) => getArticleModule(module, i))}
-          <Author author={author} />
-          <DisqusThread id={slug} path={slug} title={title}/>
-        </article>
-      </div>
+        <Twitter 
+          title={title}
+          description={contentModules[0].copy.childMarkdownRemark.excerpt}
+          image={`https:${featuredImageUrl}?w=1200&h=630`}
+        />
+        <General
+          title={title}
+          description={contentModules[0].copy.childMarkdownRemark.excerpt}
+        />
+        <ArticleHeader node={article} />
+        {contentModules.map((module, i) => getArticleModule(module, i))}
+        <Author author={author} />
+        <DisqusThread id={slug} path={slug} title={title}/>
+      </article>
+    </div>
+  </Layout>
     )
   }
 }
@@ -171,7 +174,7 @@ export const pageQuery = graphql`
         file {
           url
         }
-        responsiveResolution(width: 500) {
+        resolutions(width: 500) {
           src
           srcSet
           height
@@ -185,7 +188,7 @@ export const pageQuery = graphql`
           bio
         }
         avatar {
-          responsiveResolution(width: 200) {
+          resolutions(width: 200) {
             src
             srcSet
             height

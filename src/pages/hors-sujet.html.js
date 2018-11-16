@@ -1,5 +1,5 @@
 import React from 'react'
-import Link from 'gatsby-link'
+import {graphql, Link} from 'gatsby'
 import * as PropTypes from 'prop-types'
 import { rhythm } from '../utils/typography'
 import SingleArticle from '../components/SingleArticle'
@@ -8,6 +8,7 @@ import getLandingPageModule from '../utils/getLandingPageModule'
 import ArticleHeader from '../components/ArticleHeader'
 import Img from 'gatsby-image'
 import Helmet from 'react-helmet'
+import Layout from '../components/layout'
 
 const propTypes = {
   data: PropTypes.object.isRequired,
@@ -15,17 +16,17 @@ const propTypes = {
 
 const Article = ({ node }) => {
   return (
-    <div className="article">
-      <Helmet>
-        <title>Hors sujet | Chocolate Free</title>
-        <meta name="description" content="Chocolate free is a culinary diary of a chocoholic, sweet tooth young lady trying to re-create new sweet fruity and chocolaty version of some classic, or not, deserts."/>
-      </Helmet>
-      <ArticleHeader node={node} />
-      {node.featureImage && <Img sizes={node.featureImage.sizes} alt={node.featureImage.title} title={node.featureImage.title} backgroundColor={"#f1f1f1"}/>}
+      <div className="article">
+        <Helmet>
+          <title>Hors sujet | Chocolate Free</title>
+          <meta name="description" content="Chocolate free is a culinary diary of a chocoholic, sweet tooth young lady trying to re-create new sweet fruity and chocolaty version of some classic, or not, deserts."/>
+        </Helmet>
+        <ArticleHeader node={node} />
+        {node.featureImage && <Img sizes={node.featureImage.sizes} alt={node.featureImage.title} title={node.featureImage.title} backgroundColor={"#f1f1f1"}/>}
 
-      <p>{node.contentModules[0].copy.childMarkdownRemark.excerpt}</p>
-      <Link rel='noopener' to={`/article/${node.slug}.html`}>Read more...</Link>
-    </div>
+        <p>{node.contentModules[0].copy.childMarkdownRemark.excerpt}</p>
+        <Link rel='noopener' to={`/article/${node.slug}.html`}>Read more...</Link>
+      </div>
   )
 }
 
@@ -34,13 +35,15 @@ class HorsSujetPage extends React.Component {
     const articles = this.props.data.allContentfulArticle.edges
     const contentModules = this.props.data.allContentfulLandingPage.edges[0].node.contentModules
     return (
-      <div className="grid">
-        {contentModules.map((module, i) => getLandingPageModule(module, i))}
-        <div className="content">
-          {articles.map(({ node }, i) => <Article node={node} key={i} />)}
+      <Layout>
+        <div className="grid">
+          {contentModules.map((module, i) => getLandingPageModule(module, i))}
+          <div className="content">
+            {articles.map(({ node }, i) => <Article node={node} key={i} />)}
+          </div>
+          <SideBar />
         </div>
-        <SideBar />
-      </div>
+      </Layout>
     )
   }
 }

@@ -6,13 +6,13 @@ const Author = ({author})=> {
         <div className="c-article__author">
           <div className="c-article__authorImage c-article__authorImage--large">
           { author.avatar &&
-            author.avatar.responsiveResolution.src &&
+            author.avatar.resolutions.src &&
             <img
               style={{ margin: 0 }}
-              width={author.avatar.responsiveResolution.width}
-              height={author.avatar.responsiveResolution.height}
-              src={author.avatar.responsiveResolution.src}
-              srcSet={author.avatar.responsiveResolution.srcSet}
+              width={author.avatar.resolutions.width}
+              height={author.avatar.resolutions.height}
+              src={author.avatar.resolutions.src}
+              srcSet={author.avatar.resolutions.srcSet}
             />
            }
           </div>

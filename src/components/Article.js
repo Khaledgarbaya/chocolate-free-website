@@ -13,13 +13,13 @@ const Article = ({ node }) => {
 				<div className="c-article c-card u-marginBottomLarge">
           <ArticleHeader node={node} />
           { featureImage &&
-            featureImage.responsiveResolution.src &&
+            featureImage.resolutions.src &&
             <img
               style={{ margin: 0 }}
-              width={featureImage.responsiveResolution.width}
-              height={featureImage.responsiveResolution.height}
-              src={featureImage.responsiveResolution.src}
-              srcSet={featureImage.responsiveResolution.srcSet}
+              width={featureImage.resolutions.width}
+              height={featureImage.resolutions.height}
+              src={featureImage.resolutions.src}
+              srcSet={featureImage.resolutions.srcSet}
             />
           }
         {contentModules.map((module, i) => getArticleModule(module, i))}

@@ -1,11 +1,12 @@
 import React from 'react'
-import Link from 'gatsby-link'
 import * as PropTypes from 'prop-types'
 import { rhythm } from '../utils/typography'
 import SingleArticle from '../components/SingleArticle'
 import SideBar from '../components/SideBar'
 import getLandingPageModule from '../utils/getLandingPageModule'
 import Helmet from 'react-helmet'
+import {graphql, Link} from 'gatsby'
+import Layout from '../components/layout'
 
 const propTypes = {
   data: PropTypes.object.isRequired,
@@ -16,17 +17,19 @@ class AboutPage extends React.Component {
     const articles = this.props.data.allContentfulArticle.edges
     const contentModules = this.props.data.allContentfulLandingPage.edges[0].node.contentModules
     return (
-      <div className="grid">
-      <Helmet>
-        <title>About | Chocolate Free</title>
-        <meta name="description" content="Chocolate free is a culinary diary of a chocoholic, sweet tooth young lady trying to re-create new sweet fruity and chocolaty version of some classic, or not, deserts."/>
-      </Helmet>
-        {contentModules.map((module, i) => getLandingPageModule(module, i))}
-        <div className="content">
-          {articles.map(({ node }, i) => <SingleArticle node={node} key={i} />)}
+      <Layout>
+        <div className="grid">
+          <Helmet>
+            <title>About | Chocolate Free</title>
+            <meta name="description" content="Chocolate free is a culinary diary of a chocoholic, sweet tooth young lady trying to re-create new sweet fruity and chocolaty version of some classic, or not, deserts."/>
+          </Helmet>
+          {contentModules.map((module, i) => getLandingPageModule(module, i))}
+          <div className="content">
+            {articles.map(({ node }, i) => <SingleArticle node={node} key={i} />)}
+          </div>
+          <SideBar />
         </div>
-        <SideBar />
-      </div>
+      </Layout>
     )
   }
 }
@@ -110,7 +113,7 @@ export const pageQuery = graphql`
             }
           }
           featureImage {
-            responsiveResolution(width: 800) {
+            resolutions(width: 800) {
               src
               srcSet
               height

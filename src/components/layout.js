@@ -1,12 +1,12 @@
 import React from "react"
-import Link from "gatsby-link"
+import {Link} from "gatsby"
 import * as PropTypes from "prop-types"
 import styles from '../styles/main.scss'
 import { rhythm } from "../utils/typography"
 import Person from '../components/seo/person'
 
 const propTypes = {
-  children: PropTypes.func.isRequired,
+  children: PropTypes.object.isRequired,
 }
 const Header = () => {
   return (
@@ -44,7 +44,7 @@ class DefaultLayout extends React.Component {
       <div>
         <Header />
         <main> 
-          {this.props.children()}
+          {this.props.children}
           <footer className="footer">
           Copyright © 2017 Chocolate free website, proudly powered by <a href="https://www.contentful.com">Contentful</a> and <a href="https://github.com/gatsbyjs/gatsby">Gatsbyjs</a>.
           </footer>

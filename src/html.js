@@ -3,15 +3,6 @@ import { TypographyStyle } from "react-typography"
 import * as PropTypes from "prop-types"
 import typography from "./utils/typography"
 
-let stylesStr
-if (process.env.NODE_ENV === `production`) {
-  try {
-    stylesStr = require(`!raw-loader!../public/styles.css`)
-  } catch (e) {
-    console.log(e)
-  }
-}
-
 const propTypes = {
   headComponents: PropTypes.node.isRequired,
   body: PropTypes.node.isRequired,
@@ -21,16 +12,6 @@ const propTypes = {
 class Html extends React.Component {
   render() {
     const { headComponents, body, postBodyComponents } = this.props
-    let css
-    if (process.env.NODE_ENV === `production`) {
-      css = (
-        <style
-          id="gatsby-inlined-css"
-          dangerouslySetInnerHTML={{ __html: stylesStr }}
-        />
-      )
-    }
-
     return (
       <html lang="en" prefix="op: http://media.facebook.com/op#">
         <head>
@@ -50,7 +31,6 @@ class Html extends React.Component {
           <meta name="author" content="Amal Nasri"/>
           <meta name="p:domain_verify" content="bfdc5a3211578236b01ad516ea662d6b"/>
           <TypographyStyle typography={typography} />
-          {css}
         </head>
         <body>
           <div id="___gatsby" dangerouslySetInnerHTML={{ __html: body }} />
