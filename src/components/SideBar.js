@@ -32,7 +32,7 @@ class SideBar extends Component {
                   <div className="response" id="mce-error-response" style={{display: 'none'}}></div>
                   <div className="response" id="mce-success-response" style={{display: 'none'}}></div>
                 </div>
-                <div style={{position: 'absolute', left: '-5000px', ariaHidden:'true'}}><input type="text" name="b_a98782a9b211f2e039434108c_a6247b2b13" tabIndex="-1" value="" /></div>
+                <div style={{position: 'absolute', left: '-5000px', ariaHidden:'true'}}><input type="text" name="b_a98782a9b211f2e039434108c_a6247b2b13" tabIndex="-1" defaultValue="" /></div>
                   <div className="clear">
                     <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" className="button" />
                   </div>
