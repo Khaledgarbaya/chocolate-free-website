@@ -3,12 +3,13 @@ import {render} from 'react-dom'
 import {InstantSearch, Highlight} from 'react-instantsearch/dom'
 import {connectAutoComplete} from 'react-instantsearch/connectors'
 import Autocomplete from 'downshift'
+import {navigate} from 'gatsby'
 
 function RecipeAutoComplete({refine, hits}) {
   return (
     <Autocomplete
       itemToString={i => (i ? i.title : i)}
-      onChange={item => window.___history.push(`/article/${item.slug}.html`)}
+      onChange={item => navigate(`/article/${item.slug}.html`)}
     >
       {({
         getInputProps,
@@ -32,18 +33,18 @@ function RecipeAutoComplete({refine, hits}) {
               {hits.map((item, index) =>
                 <div
                   className="search-result__item"
-                  key={item.title}
+                  key={item.objectID}
                   {...getItemProps({
                     item,
                     index,
                     style: {
                       backgroundColor:
-                      highlightedIndex=== index ? '#e3e3e6' : 'white',
+                      highlightedIndex === index ? '#e3e3e6' : 'white',
                       fontWeight: selectedItem === item ? 'bold' : 'normal',
                     },
                   })}
                 >
-                  <Highlight attributeName="title" hit={item} />
+                  <Highlight attribute="title" hit={item} />
                 </div>,
               )}
             </div>}
@@ -62,7 +63,7 @@ function Search () {
       indexName="chocolate-free"
     >
       <AutoCompleteWithData />
-      <img src="https://www.algolia.com/static_assets/images/pricing/pricing_new/algolia-powered-by-14773f38.svg" class="" alt="Powered by Algolia" width="130" height="18" />
+      <img src="https://www.algolia.com/static_assets/images/pricing/pricing_new/algolia-powered-by-14773f38.svg"  alt="Powered by Algolia" width="130" height="18" />
     </InstantSearch>
   )
 }
