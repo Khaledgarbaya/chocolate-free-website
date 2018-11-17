@@ -1,24 +1,26 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import Link from 'gatsby-link'
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { Link } from "gatsby";
 
 class LandingPageImage extends Component {
-  render () {
-    const {
-      data
-    } = this.props
+  render() {
+    const { data } = this.props;
     return (
       <div className="header content-module">
-      <Link to="/" rel="noopener">
-        <img className="logo" src={data.image.file.url} alt="Chocolate Free"/>
-      </Link>
+        <Link to="/" rel="noopener">
+          <img
+            className="logo"
+            src={data.image.file.url}
+            alt="Chocolate Free"
+          />
+        </Link>
       </div>
-    )
+    );
   }
 }
 
 LandingPageImage.propTypes = {
   data: PropTypes.object.isRequired
-}
+};
 
-export default LandingPageImage
+export default LandingPageImage;
