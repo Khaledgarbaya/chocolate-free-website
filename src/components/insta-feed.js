@@ -1,6 +1,7 @@
 import fetch from 'unfetch'
-const url  = 'https://www.instagram.com/chocolatefreeblog/?__a=1'
+const url  = 'https://www.instagram.com/chocolatefreeblog/'
 import React, { Component } from 'react'
+import cheerio from 'cheerio'
 
 class InstaFeed extends Component {
   constructor(props) {
@@ -9,18 +10,29 @@ class InstaFeed extends Component {
   }
   componentDidMount () {
     fetch(url)
-      .then(response => response.json())
+      .then(response => response.text())
       .then(data => {
-        console.log(data.graphql.user.edge_owner_to_timeline_media.edges)
-        this.setState({media: data.graphql.user.edge_owner_to_timeline_media.edges.filter(({node}) => node.is_video === false).slice(0, 9)})
-        console.log(this.state.media)
+        const $ = cheerio.load(data)
+        const jsonData = $(`html > body > script`)
+          .get(0).children[0].data
+          .replace(/window\._sharedData\s?=\s?{/, `{`)
+          .replace(/;$/g, ``)
+        const json = JSON.parse(jsonData).entry_data.ProfilePage[0].graphql
+        this.setState({media: json.user.edge_owner_to_timeline_media.edges.filter(({node}) => node.is_video === false).slice(0, 9)})
       })
       .catch(e => console.log)
   }
   render () {
     return (
       <div className='insta-feed'>
-        {this.state.media.map(({node}, i) => <img key={i} src={node.thumbnail_resources[0].src} />)}
+        {this.state.media.map(({node}, i) => <a
+          href={`https://www.instagram.com/chocolatefreeblog/p/${node.shortcode}`}
+          target='_blank'
+          rel='noreferrer noopener'
+          title={node.edge_media_to_caption.edges[0].node.text}
+        >
+          <img key={i} src={node.thumbnail_resources[0].src} />
+        </a>)}
       </div>
     )
   }

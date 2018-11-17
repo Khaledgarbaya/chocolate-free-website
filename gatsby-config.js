@@ -107,7 +107,12 @@ module.exports = {
         'display': 'standalone'
       }
     },
-    'gatsby-plugin-offline',
+    {
+      resolve: `gatsby-plugin-offline`,
+      options: {
+        "navigateFallbackWhitelist": []
+      }
+    },
     'gatsby-transformer-remark',
     'gatsby-plugin-sass',
     {
