@@ -15,7 +15,7 @@ class SideBar extends Component {
           <h3 className="widget-title"> Meet Amal</h3>
           <Link to="/about.html">
             <img
-              src="https://images.contentful.com/0w6gaytm0wfv/2q5y0JFFcYseCSEcGke2Cy/b3515912ff2e6e3140fc5c475a72899f/Vacation_please_don_t_go_____________________italy__follow__follow4follow__likeforlike__like4like__likes__holidays__summervi.jpg?w=230"
+              src="https://images.ctfassets.net/0w6gaytm0wfv/eLUCi9XuJaQgSMU2eM4gC/062ce3244d5372a78892a8990c229388/d5c74354-60cd-4c8f-af44-47ab5d2b5c05.JPG?w=230"
               width="230"
               alt="Amal Nasri"
             />
