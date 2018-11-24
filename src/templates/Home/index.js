@@ -15,6 +15,7 @@ const propTypes = {
   data: PropTypes.object.isRequired,
 }
 const Article = ({ node }) => {
+  const excerpt = node.contentModules !== null ? node.contentModules[0].copy.childMarkdownRemark.excerpt : ''
   return (
     <div className="article__item">
       <Helmet>
@@ -25,7 +26,7 @@ const Article = ({ node }) => {
 
       <div className="article__teaser">
         <ArticleHeader node={node} />
-        <p className='article__excerpt'>{node.contentModules[0].copy.childMarkdownRemark.excerpt}</p>
+        <p className='article__excerpt'>{excerpt}</p>
         <Link to={`/article/${node.slug}.html`}>Read more...</Link>
       </div>
     </div>

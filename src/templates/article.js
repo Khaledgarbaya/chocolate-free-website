@@ -30,6 +30,7 @@ class ArticleTemplate extends React.Component {
       section
     } = article
     const featuredImageUrl = ( featureImage && featureImage.file ) ? featureImage.file.url : '' 
+    const excerpt = contentModules !== null ? contentModules[0].copy.childMarkdownRemark.excerpt: ''
     return (
       <Layout>
         <div className="content">
@@ -38,7 +39,7 @@ class ArticleTemplate extends React.Component {
               title={title}
               locale='en-US'
               type='article'
-              description={contentModules[0].copy.childMarkdownRemark.excerpt}
+              description={excerpt}
               url={`https://chocolate-free.com/article/${slug}`}
               siteName='Chocolate Free'
               updateTime={updatedAt}
@@ -55,15 +56,15 @@ class ArticleTemplate extends React.Component {
 
         <Twitter 
           title={title}
-          description={contentModules[0].copy.childMarkdownRemark.excerpt}
+          description={excerpt}
           image={`https:${featuredImageUrl}?w=1200&h=630`}
         />
         <General
           title={title}
-          description={contentModules[0].copy.childMarkdownRemark.excerpt}
+          description={excerpt}
         />
         <ArticleHeader node={article} />
-        {contentModules.map((module, i) => getArticleModule(module, i))}
+        {contentModules && contentModules.map((module, i) => getArticleModule(module, i))}
         <Author author={author} />
         <DisqusThread id={slug} path={slug} title={title}/>
       </article>

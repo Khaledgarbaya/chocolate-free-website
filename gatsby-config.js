@@ -43,8 +43,10 @@ module.exports = {
           {
             serialize: ({ query: { site, allContentfulArticle } }) => {
               return allContentfulArticle.edges.map(edge => {
+                const excerpt = edge.node.contentModules !== null ?
+                  edge.node.contentModules[0].copy.childMarkdownRemark.excerpt : ''
                 return Object.assign({}, edge.node, {
-                  description: edge.node.contentModules[0].copy.childMarkdownRemark.excerpt,
+                  description: excerpt,
                   url: site.siteMetadata.siteUrl + '/article/' + edge.node.slug +'.html',
                   guid: site.siteMetadata.siteUrl + '/article/' + edge.node.slug + '.html',
                 });
@@ -125,12 +127,14 @@ module.exports = {
           {
             transformer: ({ data }) => {
               const nodes = data.allContentfulArticle.edges.map(({node}) => {
+                const content = node.contentModules !== null ?
+                  node.contentModules.map(node => node.copy ? node.copy.copy : '').join('') : ''
                 return {
                   objectID: node.id,
                   title: node.title,
                   slug: node.slug,
                   section: node.section,
-                  content: node.contentModules.map(node => node.copy ? node.copy.copy : '').join('')
+                  content
                 }
               })
              return nodes 
