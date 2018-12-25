@@ -9,7 +9,7 @@ function Article({
 }) {
   return (
     <Helmet>
-      <link rel="canonical" href={url} />
+      <link rel="canonical" key={url} href={url} data-baseprotocol="https" data-basehost="chocolate-free.com" />
       <meta property="article:publisher" content="https://www.facebook.com/chocolatefreedotcom/" />
       <meta property="article:author" content="https://www.facebook.com/chocolatefreedotcom/" />
       <meta property="article:section" content="Dessert" />

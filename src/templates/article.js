@@ -51,7 +51,7 @@ class ArticleTemplate extends React.Component {
           <Article 
             updateTime={updatedAt}
             publishedTime={publishDate}
-            url={`https://chocolate-free.com/article/${slug}`}
+            url={`https://chocolate-free.com/article/${slug}.html`}
           />
 
         <Twitter 
