@@ -41,7 +41,7 @@
     "react-share": "^2.4.0",
     "react-typography": "^0.16.13",
     "request": "^2.88.0",
-    "slash": "^2.0.0",
+    "slash": "^3.0.0",
     "typography": "^0.16.17",
     "typography-breakpoint-constants": "^0.15.10",
     "unfetch": "^4.0.1"
