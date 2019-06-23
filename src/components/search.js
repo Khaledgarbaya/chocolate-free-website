@@ -1,6 +1,7 @@
 import React from 'react'
 import {render} from 'react-dom'
 import {InstantSearch, Highlight} from 'react-instantsearch/dom'
+import { PoweredBy } from 'react-instantsearch-dom';
 import {connectAutoComplete} from 'react-instantsearch/connectors'
 import Autocomplete from 'downshift'
 import {navigate} from 'gatsby'
@@ -63,7 +64,7 @@ function Search () {
       indexName="chocolate-free"
     >
       <AutoCompleteWithData />
-      <img src="https://www.algolia.com/static_assets/images/pricing/pricing_new/algolia-powered-by-14773f38.svg"  alt="Powered by Algolia" width="130" height="18" />
+      <PoweredBy />
     </InstantSearch>
   )
 }
