@@ -164,6 +164,14 @@ module.exports = {
         ]
       }
     },
-    'gatsby-plugin-netlify'
+    'gatsby-plugin-netlify',
+    'gatsby-plugin-postcss',
+    {
+      resolve: 'gatsby-plugin-purgecss',
+      options: {
+        tailwind: true,
+        purgeOnly: ['./src/css/style.css']
+      }
+    }
   ],
 }

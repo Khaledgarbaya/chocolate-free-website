@@ -29,6 +29,7 @@ class InstaFeed extends Component {
           href={`https://www.instagram.com/chocolatefreeblog/p/${node.shortcode}`}
           target='_blank'
           rel='noreferrer noopener'
+          key={i}
           title={node.edge_media_to_caption.edges[0].node.text}
         >
           <img key={i} src={node.thumbnail_resources[0].src} />

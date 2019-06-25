@@ -6,10 +6,10 @@ class LandingPageImage extends Component {
   render() {
     const { data } = this.props;
     return (
-      <div className="header content-module">
+      <div className="w-full px-4 py-4">
         <Link to="/" rel="noopener">
           <img
-            className="logo"
+            className="block mx-auto"
             src={data.image.file.url}
             alt="Chocolate Free"
           />

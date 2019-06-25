@@ -11,22 +11,22 @@ class PostCard extends Component {
       category
     } = this.props.post;
     return (
-      <article className="post-card">
+      <article className="w-full px-2 py-2 flex flex-wrap">
         <img
-          src={`${featureImage.file.url}?w=320&h=400`}
-          width="320"
-          height="400"
+          src={`${featureImage.file.url}?w=400&h=320`}
           alt=""
+          className="w-full sm:w-1/2"
         />
+        <div className="w-full sm:w-1/2 px-2 py-2">
         <h3>
           <Link to={`article/${slug}.html`}>{title}</Link>
         </h3>
         <div
-          className="content"
           dangerouslySetInnerHTML={{
             __html: contentModules[0].copy.childMarkdownRemark.excerpt
           }}
         />
+      </div>
       </article>
     );
   }
