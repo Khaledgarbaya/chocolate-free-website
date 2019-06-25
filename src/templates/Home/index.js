@@ -17,16 +17,24 @@ const propTypes = {
 const Article = ({ node }) => {
   const excerpt = node.contentModules !== null ? node.contentModules[0].copy.childMarkdownRemark.excerpt : ''
   return (
-    <div className="article__item">
+    <div className="mb-4 w-full flex flex-wrap overflow-hidden">
       <Helmet>
         <title>Chocolate Free</title>
         <meta name="description" content="Chocolate free is a culinary diary of a chocoholic, sweet tooth young lady trying to re-create new sweet fruity and chocolaty version of some classic, or not, deserts."/>
       </Helmet>
-      {node.featureImage && <img src={`${node.featureImage.file.url}?w=267&h=400&fit=fill&bg=rgb:ffffff`} alt={node.featureImage.title} title={node.featureImage.title} width='267' height='400'/>}
-
-      <div className="article__teaser">
-        <ArticleHeader node={node} />
-        <p className='article__excerpt'>{excerpt}</p>
+      {node.featureImage && <img 
+        className="w-full sm:w-1/2"
+        src={`${node.featureImage.file.url}?w=400&h=267&fit=fill&bg=rgb:ffffff`} 
+        alt={node.featureImage.title} 
+        title={node.featureImage.title} 
+        width='267' 
+        height='400'/>
+      }
+      <div className="px-2 py-2 w-full sm:w-1/2">
+        <div className="font-bold text-xl mb-2">{node.title}</div>
+        <p className="text-gray-700 text-base">
+          {excerpt}
+        </p>
         <Link to={`/article/${node.slug}.html`}>Read more...</Link>
       </div>
     </div>
@@ -41,7 +49,6 @@ class IndexPage extends React.Component {
     return (
       <Layout>
         <div className="grid">
-          {contentModules.map((module, i) => getLandingPageModule(module, i))}
           <div className="content">
             {articles.map(({ node }, i) => <Article node={node} key={i} />)}
             <div className="previousPost pagination">
