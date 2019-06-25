@@ -24,7 +24,7 @@ class InstaFeed extends Component {
   }
   render () {
     return (
-      <div className='insta-feed'>
+      <div className='flex flex-wrap max-w-md mx-auto justify-center'>
         {this.state.media.map(({node}, i) => <a
           href={`https://www.instagram.com/chocolatefreeblog/p/${node.shortcode}`}
           target='_blank'
@@ -32,7 +32,7 @@ class InstaFeed extends Component {
           key={i}
           title={node.edge_media_to_caption.edges[0].node.text}
         >
-          <img key={i} src={node.thumbnail_resources[0].src} />
+          <img className="mb-2 mr-2" key={i} src={node.thumbnail_resources[0].src} />
         </a>)}
       </div>
     )
