@@ -1,6 +1,11 @@
 module.exports = {
   theme: {
-    extend: {}
+    extend: {
+      fontFamily: {
+        'heading': ['EB Garamond', 'serif'],
+        'paragraph': ['Roboto', 'serif']
+      }
+    }
   },
   variants: {},
   plugins: [

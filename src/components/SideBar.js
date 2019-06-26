@@ -22,7 +22,7 @@ class SideBar extends Component {
           </Link>
         </div>
         <div className="widget widget-text">
-          <h3 className="widget-title">NEVER MISS A POST!</h3>
+          <h3 className="widget-title">Never miss a post!</h3>
           <div id="mc_embed_signup">
             <form
               action="https://chocolate-free.us17.list-manage.com/subscribe/post?u=a98782a9b211f2e039434108c&amp;id=a6247b2b13"
@@ -38,19 +38,19 @@ class SideBar extends Component {
                   <input
                     type="email"
                     autoComplete="email"
-                    defaultValue="ENTER YOUR EMAIL"
+                    defaultValue="jon@snow.com"
                     name="EMAIL"
-                    className="required email"
+                    className="required shadow mb-2 appearance-none border rounded w-full h-12 py-2 px-3 text-gray-500 leading-tight focus:outline-none focus:shadow-outline"
                     id="mce-EMAIL"
                   />
                 </div>
                 <div className="mc-field-group">
                   <input
                     type="text"
-                    defaultValue="ENTER YOUR NAME"
+                    defaultValue="Jon"
                     autoComplete="name"
                     name="FNAME"
-                    className=""
+                    className="shadow mb-2 appearance-none border rounded w-full h-12 py-2 px-3 text-gray-500 leading-tight focus:outline-none focus:shadow-outline"
                     id="mce-FNAME"
                   />
                 </div>
@@ -86,7 +86,7 @@ class SideBar extends Component {
                     value="Subscribe"
                     name="subscribe"
                     id="mc-embedded-subscribe"
-                    className="button"
+                    className="bg-blue-600 hover:bg-blue-900 text-white font-bold w-full h-12 py-2 px-4  rounded focus:outline-none focus:shadow-outline"
                   />
                 </div>
               </div>

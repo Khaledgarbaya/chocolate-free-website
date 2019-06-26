@@ -21,8 +21,8 @@ function RecipeAutoComplete({refine, hits}) {
       }) =>
         <div>
           <input
-            placeholder="Type a search term"
-            className="search-input"
+            placeholder="Orange cake..."
+            className="w-full bg-purple-white shadow rounded border-0 p-3"
             {...getInputProps({
               onChange(e) {
                 refine(e.target.value)
@@ -64,7 +64,7 @@ function Search () {
       indexName="chocolate-free"
     >
       <AutoCompleteWithData />
-      <PoweredBy />
+      <PoweredBy/>
     </InstantSearch>
   )
 }

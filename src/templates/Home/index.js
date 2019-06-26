@@ -17,8 +17,8 @@ const propTypes = {
 const Article = ({ node }) => {
   const excerpt = node.contentModules !== null ? node.contentModules[0].copy.childMarkdownRemark.excerpt : ''
   return (
-    <Link  className="w-full md:w-1/2 lg:w-1/3 px-3 flex flex-col mb-8" to={`/article/${node.slug}.html`}>
-      <div className="rounded-lg shadow hover:shadow-raised  overflow-hidden">
+    <Link  className="w-full block mx-auto max-w-xl px-3 flex flex-col mb-8 border-b-2" to={`/article/${node.slug}.html`}>
+      <div className="overflow-hidden">
         <Helmet>
           <title>Chocolate Free</title>
           <meta name="description" content="Chocolate free is a culinary diary of a chocoholic, sweet tooth young lady trying to re-create new sweet fruity and chocolaty version of some classic, or not, deserts."/>
@@ -31,11 +31,11 @@ const Article = ({ node }) => {
           }
         </div>
         <div className="p-6 flex-1 flex flex-col justify-between">
-          <h3 className="font-display text-black no-underline mb-4">{node.title}</h3>
-          <p className="text-gray-700 text-base">
+          <h3 className="font-heading text-2xl sm:text-3xl text-black no-underline mb-4">{node.title}</h3>
+          <p className="font-paragraph text-gray-700 text-base">
             {excerpt}
           </p>
-          <Link className="text-grey-600 text-md mr-2 mt-2 w-full inline-block text-right" to={`/article/${node.slug}.html`}>Read more...</Link>
+          <Link className="border-2 border-black text-grey-600 text-md mt-4 w-1/2 inline-block text-center  mx-auto capitalize p-2" to={`/article/${node.slug}.html`}>Read more</Link>
         </div>
       </div>
     </Link>
@@ -50,7 +50,7 @@ class IndexPage extends React.Component {
     return (
       <Layout>
         <div className="grid">
-          <div className="flex flex-wrap">
+          <div>
             {articles.map(({ node }, i) => <Article node={node} key={i} />)}
           </div>
           <SideBar />
