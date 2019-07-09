@@ -11,7 +11,7 @@ class ArticleImage extends Component {
     // TODO: add tracer effect to the image ?
     return (
     <section className='content-module one-image'>
-    <img src={`${image.file.url}?w=650`} alt={image.title} title={image.title} />
+      {image && <img src={`${image.file.url}?w=650`} alt={image.title} title={image.title} />}
     </section>
     )
   }
