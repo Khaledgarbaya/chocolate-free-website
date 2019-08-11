@@ -17,8 +17,8 @@ const propTypes = {
 const Article = ({ node }) => {
   const excerpt = node.contentModules !== null ? node.contentModules[0].copy.childMarkdownRemark.excerpt : ''
   return (
-    <Link  className="w-full block mx-auto max-w-xl px-3 flex flex-col mb-8 border-b-2" to={`/article/${node.slug}.html`}>
-      <div className="overflow-hidden">
+    <Link  className="w-full md:w-1/2 inline-block max-w-xl p-3 flex items-center justify-center flex-col mb-8 border-b-2" to={`/article/${node.slug}.html`}>
+      <div className="flex-1">
         <Helmet>
           <title>Chocolate Free</title>
           <meta name="description" content="Chocolate free is a culinary diary of a chocoholic, sweet tooth young lady trying to re-create new sweet fruity and chocolaty version of some classic, or not, deserts."/>
@@ -31,13 +31,13 @@ const Article = ({ node }) => {
           }
         </div>
         <div className="p-6 flex-1 flex flex-col justify-between">
-          <h3 className="font-heading text-2xl sm:text-3xl text-black no-underline mb-4">{node.title}</h3>
-          <p className="font-paragraph text-gray-700 text-base">
+          <h3 className="font-heading text-2xl sm:text-2xl text-black no-underline mb-4">{node.title}</h3>
+          <p className="font-paragraph h-64 text-gray-700 text-base">
             {excerpt}
           </p>
-          <Link className="border-2 border-black text-grey-600 text-md mt-4 w-1/2 inline-block text-center  mx-auto capitalize p-2" to={`/article/${node.slug}.html`}>Read more</Link>
         </div>
       </div>
+          <Link className="inline-block font-paragraph border-2 border-black text-grey-600 text-md mt-4 w-1/2 inline-block text-center  mx-auto capitalize p-2" to={`/article/${node.slug}.html`}>Read more</Link>
     </Link>
   )
 }
@@ -49,8 +49,8 @@ class IndexPage extends React.Component {
     const contentModules = this.props.data.allContentfulLandingPage.edges[0].node.contentModules
     return (
       <Layout>
-        <div className="grid">
-          <div>
+        <div className="w-full flex flex-wrap">
+          <div className="md:w-2/3 flex flex-wrap">
             {articles.map(({ node }, i) => <Article node={node} key={i} />)}
           </div>
           <SideBar />

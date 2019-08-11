@@ -40,7 +40,7 @@ exports.createPages = ({ graphql, actions }) => {
           pageTemplate,
           '/article',
           result.data.allContentfulArticle.edges.length,
-          3
+          6
         )
         console.log('after paginate')
         _.each(result.data.allContentfulArticle.edges, edge => {

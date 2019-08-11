@@ -7,7 +7,7 @@ import getArticleModule from "../utils/getArticleModule";
 const Article = ({ node }) => {
   const { featureImage, contentModules } = node;
   return (
-    <div className="c-article c-card u-marginBottomLarge">
+    <div className="container mx-auto max-w-xl">
       <ArticleHeader node={node} />
       {featureImage && featureImage.resolutions.src && (
         <img

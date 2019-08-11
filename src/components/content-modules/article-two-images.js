@@ -9,18 +9,16 @@ class ArticleTwoImages extends Component {
       right
     } = this.props.data
     return (
-    <section className='content-module two-images'>
-      <div className='left'>
+    <section className='flex flex-wrap justify-center w-full'>
+      <div className='w-full md:w-1/2'>
         <img src={`${left.file.url}?w=450`}
           alt={left.title}
           title={left.title}/>
-        <p>{left.description}</p>
       </div>
-      <div className='right'>
+      <div className='w-full md:w-1/2'>
         <img src={`${right.file.url}?w=450`}
           alt={right.title}
           title={right.title}/>
-        <p>{right.description}</p>
       </div>
     </section>
     )
