@@ -1,5 +1,8 @@
 module.exports = {
   theme: {
+    height: {
+      'xl': '420px'
+    },
     extend: {
       fontFamily: {
         'heading': ['EB Garamond', 'serif'],

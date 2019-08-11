@@ -10,8 +10,9 @@ class ArticleCopy extends Component {
     } = this.props.data.copy.childMarkdownRemark
     return (
     <section 
+    className="p-2 text-paragraph block"
     dangerouslySetInnerHTML={{__html: html}} 
-    className='content-module' />
+    />
   )
   }
 }

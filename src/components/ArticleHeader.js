@@ -3,10 +3,10 @@ import { Link } from "gatsby";
 const ArticleHeader = ({ node }) => {
   return (
     <div className="article__header">
-      <h1 className="article__headline">
+      <h1 className="font-heading text-6xl article__headline w-full text-center">
         <Link to={`/article/${node.slug}.html`}>{node.title}</Link>
       </h1>
-      <div className="article__date">
+      <div className="flex">
         <svg
           height="24"
           viewBox="0 0 24 24"
