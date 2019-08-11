@@ -36,9 +36,8 @@ class HorsSujetPage extends React.Component {
     const contentModules = this.props.data.allContentfulLandingPage.edges[0].node.contentModules
     return (
       <Layout>
-        <div className="grid">
-          {contentModules.map((module, i) => getLandingPageModule(module, i))}
-          <div className="content">
+        <div className="w-full flex flex-wrap">
+          <div className="md:w-2/3 flex flex-wrap p-4">
             {articles.map(({ node }, i) => <Article node={node} key={i} />)}
           </div>
           <SideBar />

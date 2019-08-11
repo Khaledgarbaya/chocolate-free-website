@@ -31,8 +31,8 @@ class DefaultLayout extends React.Component {
         <Header />
         <main className="max-w-4xl mx-auto px-2 py-2"> 
           {this.props.children}
-          <footer className="w-full flex justify-center font-paragraph">
-            Copyright © 2017-2019 Chocolate free website, proudly powered by {' '} <a href="https://www.contentful.com" className="inline-block text-blue-900 px-2 underline">Contentful</a>{' '} and {' '}<a className="inline-block text-blue-900 px-2 underline" href="https://github.com/gatsbyjs/gatsby">Gatsbyjs</a>.
+          <footer className="mt-4 border-t p-2 w-full font-paragraph">
+            Copyright © 2017-2019 Chocolate free website, proudly powered by <a href="https://www.contentful.com" className="text-blue-900 px-2 underline">Contentful</a> and <a className="text-blue-900 px-2 underline" href="https://github.com/gatsbyjs/gatsby">Gatsbyjs</a>.
           </footer>
         </main>
       </div>

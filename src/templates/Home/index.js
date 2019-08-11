@@ -52,6 +52,10 @@ class IndexPage extends React.Component {
         <div className="w-full flex flex-wrap">
           <div className="md:w-2/3 flex flex-wrap">
             {articles.map(({ node }, i) => <Article node={node} key={i} />)}
+            <div className="w-full flex justify-between">
+              { nextPath && <Link className="underline text-blue-600" to={nextPath}>Previous</Link>}
+              { nextPath && <Link className="underline text-blue-600" to={nextPath}>Next</Link> }
+            </div> 
           </div>
           <SideBar />
         </div>
