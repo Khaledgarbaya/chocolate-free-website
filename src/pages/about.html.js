@@ -18,13 +18,13 @@ class AboutPage extends React.Component {
     const contentModules = this.props.data.allContentfulLandingPage.edges[0].node.contentModules
     return (
       <Layout>
-        <div className="grid">
+        <div className="flex flex-wrap w-full">
           <Helmet>
             <title>About | Chocolate Free</title>
             <meta name="description" content="Chocolate free is a culinary diary of a chocoholic, sweet tooth young lady trying to re-create new sweet fruity and chocolaty version of some classic, or not, deserts."/>
           </Helmet>
           {contentModules.map((module, i) => getLandingPageModule(module, i))}
-          <div className="content">
+          <div className="w-full md:w-2/3 p-4">
             {articles.map(({ node }, i) => <SingleArticle node={node} key={i} />)}
           </div>
           <SideBar />

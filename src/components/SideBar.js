@@ -6,12 +6,12 @@ import Search from "./search";
 class SideBar extends Component {
   render() {
     return (
-      <div className="w-full md:w-1/3">
-        <div className="search widget">
+      <div className="flex items-center flex-col  w-full md:w-1/3">
+        <div className="border-b py-2">
           <h3 className="text-xl font-heading inline-block mb-4">Looking for something?</h3>
           <Search />
         </div>
-        <div className="flex flex-col items-center my-6">
+        <div className="flex flex-col border-b items-center my-6">
           <h3 className="inline-block mb-2 text-xl font-heading">Meet Amal</h3>
           <Link to="/about.html" className="inline-block">
             <img
@@ -21,7 +21,7 @@ class SideBar extends Component {
             />
           </Link>
         </div>
-        <div className="my-6 flex flex-col items-center w-full">
+        <div className="my-6 border-b flex flex-col items-center w-full">
           <h3 className="font-heading text-xl mb-2">Never miss a post!</h3>
           <div id="mc_embed_signup">
             <form

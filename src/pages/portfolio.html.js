@@ -17,7 +17,7 @@ class PortfolioPage extends React.Component {
     const contentModules = this.props.data.allContentfulLandingPage.edges[0].node.contentModules
     return (
       <Layout>
-        <div className="grid portfolio">
+        <div className="flex flex-wrap">
           <Helmet>
             <title>Protfolio | Chocolate Free</title>
             <meta name="description" content="Chocolate free is a culinary diary of a chocoholic, sweet tooth young lady trying to re-create new sweet fruity and chocolaty version of some classic, or not, deserts."/>

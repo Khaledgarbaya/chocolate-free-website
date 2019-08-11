@@ -3,7 +3,7 @@ import { Link } from "gatsby";
 const ArticleHeader = ({ node }) => {
   return (
     <div className="article__header">
-      <h1 className="font-heading text-6xl article__headline w-full text-center">
+      <h1 className="font-heading text-5xl w-full text-center inline-block mb-5">
         <Link to={`/article/${node.slug}.html`}>{node.title}</Link>
       </h1>
       <div className="flex">

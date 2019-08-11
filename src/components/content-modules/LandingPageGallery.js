@@ -6,15 +6,15 @@ class LandingPageGallery extends Component {
   render() {
     const { data } = this.props;
     return (
-      <div className="content content-module">
+      <div className="flex flex-wrap w-full">
         <div
-          className="description"
+          className="mb-6"
           dangerouslySetInnerHTML={{
             __html: data.description.childMarkdownRemark.html
           }}
         />
         {data.images.map((image, i) => (
-          <img key={i} src={image.file.url} />
+          <img className="w-full sm:w-1/2 px-2" key={i} src={image.file.url} />
         ))}
       </div>
     );
