@@ -38,7 +38,8 @@ class SideBar extends Component {
                 <div className="mc-field-group">
                   <input
                     type="text"
-                    defaultValue="Jon"
+                    defaultValue=""
+                    placeholder="Name"
                     autoComplete="name"
                     name="FNAME"
                     className="shadow mb-2 appearance-none border rounded w-full h-12 py-2 px-3 text-gray-500 leading-tight focus:outline-none focus:shadow-outline"
@@ -49,7 +50,8 @@ class SideBar extends Component {
                   <input
                     type="email"
                     autoComplete="email"
-                    defaultValue="jon@snow.com"
+                    defaultValue=""
+                    placeholder="Email"
                     name="EMAIL"
                     className="required shadow mb-2 appearance-none border rounded w-full h-12 py-2 px-3 text-gray-500 leading-tight focus:outline-none focus:shadow-outline"
                     id="mce-EMAIL"
