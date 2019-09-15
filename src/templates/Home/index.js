@@ -17,7 +17,7 @@ const propTypes = {
 const Article = ({ node }) => {
   const excerpt = node.contentModules !== null ? node.contentModules[0].copy.childMarkdownRemark.excerpt : ''
   return (
-    <Link  className="w-full md:w-1/2 inline-block max-w-xl p-3 flex items-center justify-center flex-col mb-8 border-b-2" to={`/article/${node.slug}.html`}>
+    <div  className="w-full md:w-1/2 inline-block max-w-xl p-3 flex items-center justify-center flex-col mb-8 border-b-2" to={`/article/${node.slug}.html`}>
       <div className="flex-1">
         <Helmet>
           <title>Chocolate Free</title>
@@ -38,7 +38,7 @@ const Article = ({ node }) => {
         </div>
       </div>
           <Link className="inline-block font-paragraph border-2 border-black text-grey-600 text-md mt-4 w-1/2 inline-block text-center  mx-auto capitalize p-2" to={`/article/${node.slug}.html`}>Read more</Link>
-    </Link>
+    </div>
   )
 }
 
