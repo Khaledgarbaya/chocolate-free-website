@@ -4,8 +4,16 @@
 
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css?family=EB+Garamond:400,700,700i|Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Libre+Caslon+Text|Roboto&display=swap');
 
 body {
   @apply font-paragraph;
+}
+
+.font-heading {
+  font-family: 'Libre Caslon Text', serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Libre Caslon Text', serif;
 }
