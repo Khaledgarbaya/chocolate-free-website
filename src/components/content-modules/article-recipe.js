@@ -17,7 +17,7 @@ class Recipe extends Component {
       totalTime
     } = this.props.data
     return (
-      <section className='recipe border-dotted border text-paragraph p-2'>
+      <section className='recipe border-dotted border text-paragraph p-8'>
         <h2 className='uppercase text-heading text-2xl w-full text-center'> {title} </h2>
         <div className='flex flex-wrap text-paragraph'>
           <div className='w-full p-6 md:w-1/3 border border-dotted'>
