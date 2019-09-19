@@ -25,3 +25,39 @@ ul {
 ol {
    @apply list-decimal;
 }
+p {
+  @apply mb-3;
+}
+blockquote {
+  z-index: 1;
+  position: relative;
+  margin: 0;
+  padding: 0.75rem 2.75rem;
+  font-family: Georgia, serif;
+  font-size: 1.125rem;
+  font-style: italic;
+  padding: 1em 2em;
+  width: 80%;
+  margin: 0 auto;
+  background-color: rgba(0, 0, 0, 0.02);
+}
+blockquote::before, blockquote::after {
+  z-index: -1;
+  position: absolute;
+  color: #d2d2d2;
+  font-size: 4rem;
+  font-style: normal;
+  font-weight: 700;
+}
+blockquote::before {
+  content: "“";
+  top: 0;
+  left: 0;
+  line-height: 1;
+}
+blockquote::after {
+  content: "”";
+  bottom: 0;
+  right: 0;
+  line-height: 0;
+}
