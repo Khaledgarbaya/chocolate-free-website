@@ -1,4 +1,6 @@
 import React from 'react';
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+import { BLOCKS } from '@contentful/rich-text-types';
 import { graphql, Link } from 'gatsby';
 import SideBar from '../components/SideBar';
 import getLandingPageModule from '../utils/getLandingPageModule';
@@ -53,11 +55,25 @@ const Article = ({ node }) => {
   );
 };
 const PageTemplate = ({ data }) => {
-  const { articles = [] } = data.contentfulPage;
+  let { articles, pageContent } = data.contentfulPage;
+  pageContent = pageContent || {};
+  articles = articles || [];
+  const options = {
+    renderNode: {
+      [BLOCKS.HEADING_1]: (node, children) => {
+        return (
+          <h1 className="font-heading text-5xl w-full text-center inline-block mb-5">
+            {children}
+          </h1>
+        );
+      },
+    },
+  };
   return (
     <Layout>
       <div className="w-full flex flex-wrap">
         <div className="md:w-2/3 flex flex-wrap">
+          <div>{documentToReactComponents(pageContent.json, options)}</div>
           {articles.map((article, i) => (
             <Article node={article} key={i} />
           ))}
