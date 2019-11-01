@@ -55,7 +55,7 @@ const Article = ({ node }) => {
   );
 };
 const PageTemplate = ({ data }) => {
-  let { articles, pageContent } = data.contentfulPage;
+  let { articles, pageContent, hideSideBar } = data.contentfulPage;
   pageContent = pageContent || {};
   articles = articles || [];
   const options = {
@@ -67,18 +67,21 @@ const PageTemplate = ({ data }) => {
           </h1>
         );
       },
+      [BLOCKS.EMBEDDED_ENTRY]: (node, children) => {
+        return getLandingPageModule(node.data.target);
+      },
     },
   };
   return (
     <Layout>
       <div className="w-full flex flex-wrap">
-        <div className="md:w-2/3 flex flex-wrap">
+        <div className={`${hideSideBar ? '' : 'md:w-2/3'} flex flex-wrap`}>
           <div>{documentToReactComponents(pageContent.json, options)}</div>
           {articles.map((article, i) => (
             <Article node={article} key={i} />
           ))}
         </div>
-        <SideBar />
+        {!hideSideBar && <SideBar />}
       </div>
     </Layout>
   );
@@ -89,6 +92,7 @@ export const query = graphql`
     contentfulPage(slug: { eq: $slug }) {
       title
       slug
+      hideSideBar
       pageContent {
         json
       }

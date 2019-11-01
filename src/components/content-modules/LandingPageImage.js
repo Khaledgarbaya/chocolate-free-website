@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { Link } from "gatsby";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'gatsby';
 
 class LandingPageImage extends Component {
   render() {
@@ -10,7 +10,7 @@ class LandingPageImage extends Component {
         <Link to="/" rel="noopener">
           <img
             className="block mx-auto"
-            src={data.image.file.url}
+            src={data.fields.image['en-US'].file['en-US'].url}
             alt="Chocolate Free"
           />
         </Link>
@@ -20,7 +20,7 @@ class LandingPageImage extends Component {
 }
 
 LandingPageImage.propTypes = {
-  data: PropTypes.object.isRequired
+  data: PropTypes.object.isRequired,
 };
 
 export default LandingPageImage;
