@@ -19,13 +19,6 @@ const Article = ({ node }) => {
       to={`/article/${node.slug}.html`}
     >
       <div className="flex-1">
-        <Helmet>
-          <title>Chocolate Free</title>
-          <meta
-            name="description"
-            content="Chocolate free is a culinary diary of a chocoholic, sweet tooth young lady trying to re-create new sweet fruity and chocolaty version of some classic, or not, deserts."
-          />
-        </Helmet>
         <div>
           {node.featureImage && (
             <div
@@ -75,6 +68,13 @@ const PageTemplate = ({ data }) => {
   return (
     <Layout>
       <div className="flex flex-wrap">
+        <Helmet>
+          <title>Chocolate Free</title>
+          <meta
+            name="description"
+            content="Chocolate free is a culinary diary of a chocoholic, sweet tooth young lady trying to re-create new sweet fruity and chocolaty version of some classic, or not, deserts."
+          />
+        </Helmet>
         <div className={`${hideSideBar ? '' : 'md:w-2/3'} flex flex-wrap`}>
           <div>{documentToReactComponents(pageContent.json, options)}</div>
           <div className="w-full flex flex-wrap">
@@ -91,7 +91,7 @@ const PageTemplate = ({ data }) => {
                 }
               })
               .map((article, i) => (
-                <Article node={article} key={i} />
+                <Article node={article} key={article.id} />
               ))}
           </div>
         </div>
