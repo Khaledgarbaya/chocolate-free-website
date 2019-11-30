@@ -74,12 +74,26 @@ const PageTemplate = ({ data }) => {
   };
   return (
     <Layout>
-      <div className="w-full flex flex-wrap">
+      <div className="flex flex-wrap">
         <div className={`${hideSideBar ? '' : 'md:w-2/3'} flex flex-wrap`}>
           <div>{documentToReactComponents(pageContent.json, options)}</div>
-          {articles.map((article, i) => (
-            <Article node={article} key={i} />
-          ))}
+          <div className="w-full flex flex-wrap">
+            {articles
+              .sort((a, b) => {
+                const d1 = new Date(a.publishDate);
+                const d2 = new Date(b.publishDate);
+                if (d1 > d2) {
+                  return -1;
+                } else if (d1 < d2) {
+                  return 1;
+                } else {
+                  return 0;
+                }
+              })
+              .map((article, i) => (
+                <Article node={article} key={i} />
+              ))}
+          </div>
         </div>
         {!hideSideBar && <SideBar />}
       </div>
