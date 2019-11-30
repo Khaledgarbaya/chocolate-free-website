@@ -13,7 +13,16 @@ body {
 .font-heading {
   font-family: 'Libre Caslon Text', serif;
 }
+.ais-PoweredBy-text {
+  @apply text-sm;
+}
 
+.ais-PoweredBy {
+  @apply text-center;
+}
+.ais-PoweredBy svg {
+  @apply inline w-16;
+}
 h1,
 h2,
 h3,
