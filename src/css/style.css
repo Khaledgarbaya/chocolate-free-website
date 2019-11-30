@@ -14,16 +14,21 @@ body {
   font-family: 'Libre Caslon Text', serif;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: 'Libre Caslon Text', serif;
 }
 
 ul {
-   @apply list-disc;
+  @apply list-disc p-4;
 }
 
 ol {
-   @apply list-decimal;
+  @apply list-decimal;
 }
 p {
   @apply mb-3;
@@ -41,7 +46,8 @@ blockquote {
   margin: 0 auto;
   background-color: rgba(0, 0, 0, 0.02);
 }
-blockquote::before, blockquote::after {
+blockquote::before,
+blockquote::after {
   z-index: -1;
   position: absolute;
   color: #d2d2d2;
@@ -50,13 +56,13 @@ blockquote::before, blockquote::after {
   font-weight: 700;
 }
 blockquote::before {
-  content: "“";
+  content: '“';
   top: 0;
   left: 0;
   line-height: 1;
 }
 blockquote::after {
-  content: "”";
+  content: '”';
   bottom: 0;
   right: 0;
   line-height: 0;
