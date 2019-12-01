@@ -18,10 +18,14 @@ exports.createPages = ({ graphql, actions }) => {
               }
             }
           }
-          allContentfulPage {
+          allContentfulNavigation {
             edges {
               node {
-                slug
+                navigationElements {
+                  page {
+                    slug
+                  }
+                }
               }
             }
           }
@@ -35,13 +39,15 @@ exports.createPages = ({ graphql, actions }) => {
         const articleTemplate = path.resolve(`./src/templates/article.js`);
         const pageTemplate = path.resolve('./src/templates/page.js');
 
-        _.each(result.data.allContentfulPage.edges, edge => {
-          createPage({
-            path: edge.node.slug,
-            component: slash(pageTemplate),
-            context: {
-              slug: edge.node.slug,
-            },
+        _.each(result.data.allContentfulNavigation.edges, edge => {
+          _.each(edge.node.navigationElements, navElement => {
+            createPage({
+              path: navElement.page.slug,
+              component: slash(pageTemplate),
+              context: {
+                slug: navElement.page.slug,
+              },
+            });
           });
         });
         _.each(result.data.allContentfulArticle.edges, edge => {
