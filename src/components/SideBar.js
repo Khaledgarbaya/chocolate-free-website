@@ -1,17 +1,19 @@
-import React, { Component } from "react";
-import { Link } from "gatsby";
-import InstaFeed from "./insta-feed";
-import Search from "./search";
+import React, { Component } from 'react';
+import { Link } from 'gatsby';
+import InstaFeed from './insta-feed';
+import Search from './search';
 
 class SideBar extends Component {
   render() {
     return (
       <div className="flex items-center flex-col  w-full md:w-1/3">
-        <div className="border-b py-2">
-          <h3 className="text-xl font-heading inline-block mb-4">Looking for something?</h3>
+        <div className="border-b p-3">
+          <h3 className="text-xl font-heading inline-block mb-4">
+            Looking for something?
+          </h3>
           <Search />
         </div>
-        <div className="flex flex-col border-b items-center my-6">
+        <div className="flex flex-col border-b items-center p-3 my-6">
           <h3 className="inline-block mb-2 text-xl font-heading">Meet Amal</h3>
           <Link to="/about.html" className="inline-block">
             <img
@@ -21,7 +23,7 @@ class SideBar extends Component {
             />
           </Link>
         </div>
-        <div className="my-6 border-b flex flex-col items-center w-full">
+        <div className="my-6 p-3 border-b flex flex-col items-center w-full">
           <h3 className="font-heading text-xl mb-2">Never miss a post!</h3>
           <div id="mc_embed_signup">
             <form
@@ -34,7 +36,6 @@ class SideBar extends Component {
               noValidate
             >
               <div id="mc_embed_signup_scroll">
-
                 <div className="mc-field-group">
                   <input
                     type="text"
@@ -61,48 +62,51 @@ class SideBar extends Component {
                   <div
                     className="response"
                     id="mce-error-response"
-                    style={{ display: "none" }}
+                    style={{ display: 'none' }}
                   />
                   <div
                     className="response"
                     id="mce-success-response"
-                    style={{ display: "none" }}
+                    style={{ display: 'none' }}
                   />
                 </div>
-      <div
-        style={{
-          position: "absolute",
-          left: "-5000px",
-          ariaHidden: "true"
-        }}
-      >
-        <input
-          type="text"
-          name="b_a98782a9b211f2e039434108c_a6247b2b13"
-          tabIndex="-1"
-      defaultValue=""
-    />
-      </div>
-      <div className="clear">
-      <input
-    type="submit"
-    value="Subscribe"
-      name="subscribe"
-      id="mc-embedded-subscribe"
-      className="font-paragraph bg-black hover:bg-gray-900 text-white font-bold w-full h-12 py-2 px-4  rounded focus:outline-none focus:shadow-outline"
-    />
-  </div>
-</div>
+                <div
+                  style={{
+                    position: 'absolute',
+                    left: '-5000px',
+                    ariaHidden: 'true',
+                  }}
+                >
+                  <input
+                    type="text"
+                    name="b_a98782a9b211f2e039434108c_a6247b2b13"
+                    tabIndex="-1"
+                    defaultValue=""
+                  />
+                </div>
+                <div className="clear">
+                  <input
+                    type="submit"
+                    value="Subscribe"
+                    name="subscribe"
+                    id="mc-embedded-subscribe"
+                    className="font-paragraph bg-black hover:bg-gray-900 text-white font-bold w-full h-12 py-2 px-4  rounded focus:outline-none focus:shadow-outline"
+                  />
+                </div>
+              </div>
             </form>
+          </div>
+        </div>
+        <div className="flex flex-col items-center">
+          <h3 className="text-xl font-heading inline-block mb-2">
+            {' '}
+            Instagram Feed
+          </h3>
+          <InstaFeed />
+        </div>
       </div>
-      </div>
-      <div className="flex flex-col items-center">
-        <h3 className="text-xl font-heading inline-block mb-2"> Instagram Feed</h3>
-        <InstaFeed />
-      </div>
-    </div>
     );
-    }
-    }
+  }
+}
 
 export default SideBar;
