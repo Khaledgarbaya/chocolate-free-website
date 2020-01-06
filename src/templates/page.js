@@ -18,7 +18,7 @@ const Article = ({ node }) => {
       className="w-full md:w-1/2 inline-block max-w-xl p-3 flex items-center justify-center flex-col mb-8 border-b-2"
       to={`/article/${node.slug}.html`}
     >
-      <div className="flex-1">
+      <div>
         <div>
           {node.featureImage && (
             <div
