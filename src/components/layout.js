@@ -1,9 +1,9 @@
-import React from 'react';
-import { Link } from 'gatsby';
-import * as PropTypes from 'prop-types';
-import '../css/style.css';
-import Person from '../components/seo/person';
-import MainMenu from '../components/main-menu';
+import React from "react";
+import { Link } from "gatsby";
+import * as PropTypes from "prop-types";
+import "../css/style.css";
+import Person from "../components/seo/person";
+import MainMenu from "../components/main-menu";
 
 const propTypes = {
   children: PropTypes.object.isRequired,
@@ -31,24 +31,25 @@ class DefaultLayout extends React.Component {
         <Header />
         <main className="max-w-4xl mx-auto px-2 py-2">
           {this.props.children}
-          <footer className="mt-4 border-t p-2 w-full font-paragraph">
-            Copyright © 2017-2019 Chocolate free website, proudly powered by{' '}
-            <a
-              href="https://www.contentful.com"
-              className="text-blue-900 px-2 underline"
-            >
-              Contentful
-            </a>{' '}
-            and{' '}
-            <a
-              className="text-blue-900 px-2 underline"
-              href="https://github.com/gatsbyjs/gatsby"
-            >
-              Gatsbyjs
-            </a>
-            .
-          </footer>
         </main>
+
+        <footer className="mt-4 border-t p-2 w-full font-paragraph">
+          Copyright © 2017-2019 Chocolate free website, proudly powered by{" "}
+          <a
+            href="https://www.contentful.com"
+            className="text-blue-900 px-2 underline"
+          >
+            Contentful
+          </a>{" "}
+          and{" "}
+          <a
+            className="text-blue-900 px-2 underline"
+            href="https://github.com/gatsbyjs/gatsby"
+          >
+            Gatsbyjs
+          </a>
+          .
+        </footer>
       </div>
     );
   }

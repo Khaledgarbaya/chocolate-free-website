@@ -64,7 +64,11 @@ const PageTemplate = ({ data }) => {
         </Helmet>
         <div className={`${hideSideBar ? "" : "md:w-2/3"} flex flex-wrap`}>
           {documentJSX && <div>{documentJSX}</div>}
-          <div className="grid max-h-0 p-2 gap-5 max-2lg mx-auto sm:grid-cols-2 lg:max-w-none">
+          <div
+            className={`${
+              articles.length < 3 ? "max-h-0" : ""
+            } grid p-2 gap-5 max-2lg mx-auto sm:grid-cols-2 lg:max-w-none`}
+          >
             {articles
               .sort((a, b) => {
                 const d1 = new Date(a.publishDate);
