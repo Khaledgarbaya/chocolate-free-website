@@ -46,7 +46,7 @@
     "react-typography": "^0.16.19",
     "request": "^2.88.0",
     "slash": "^3.0.0",
-    "tailwindcss": "^1.0.4",
+    "tailwindcss": "^1.2.0",
     "tailwindcss-aspect-ratio": "^1.0.3",
     "typography": "^0.16.19",
     "typography-breakpoint-constants": "^0.16.19",

@@ -1,50 +1,36 @@
-import React from 'react';
-import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
-import { BLOCKS } from '@contentful/rich-text-types';
-import { graphql, Link } from 'gatsby';
-import SideBar from '../components/SideBar';
-import getLandingPageModule from '../utils/getLandingPageModule';
-import Img from 'gatsby-image';
-import Helmet from 'react-helmet';
-import Layout from '../components/layout';
+import React from "react";
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import { BLOCKS } from "@contentful/rich-text-types";
+import { graphql, Link } from "gatsby";
+import SideBar from "../components/SideBar";
+import getLandingPageModule from "../utils/getLandingPageModule";
+import Helmet from "react-helmet";
+import Layout from "../components/layout";
 
 const Article = ({ node }) => {
   const excerpt =
     node.contentModules !== null
       ? node.contentModules[0].copy.childMarkdownRemark.excerpt
-      : '';
+      : "";
   return (
-    <div
-      className="w-full md:w-1/2 inline-block max-w-xl p-3 flex items-center justify-center flex-col mb-8 border-b-2"
+    <Link
+      className="block overflow-hidden rounded-lg shadow hover:shadow-xl"
       to={`/article/${node.slug}.html`}
     >
-      <div>
-        <div>
-          {node.featureImage && (
-            <div
-              className="bg-cover aspect-ratio-16x9"
-              style={{
-                backgroundImage: `url(https:${node.featureImage.file.url}?w=640&h=360&fit=thumb)`,
-              }}
-            ></div>
-          )}
-        </div>
-        <div className="p-6 flex-1 flex flex-col justify-between">
-          <h3 className="font-heading text-2xl sm:text-2xl text-black no-underline mb-4">
-            {node.title}
-          </h3>
-          <p className="font-paragraph h-64 text-gray-700 text-base">
-            {excerpt}
-          </p>
-        </div>
+      <div className="relative pb-2/3">
+        <img
+          className="absolute object-cover w-full h-full"
+          src={node.featureImage.file.url}
+          alt={node.featureImage.title}
+        />
       </div>
-      <Link
-        className="inline-block font-paragraph border-2 border-black text-grey-600 text-md mt-4 w-1/2 inline-block text-center  mx-auto capitalize p-2"
-        to={`/article/${node.slug}.html`}
-      >
-        Read more
-      </Link>
-    </div>
+      <div className="flex flex-col flex-1 p-4">
+        <h3 className="mb-4 text-sm text-black no-underline font-heading sm:text-lg">
+          {node.title}
+        </h3>
+        <p className="text-sm text-gray-700 font-paragraph">{excerpt}</p>
+      </div>
+    </Link>
   );
 };
 const PageTemplate = ({ data }) => {
@@ -53,18 +39,19 @@ const PageTemplate = ({ data }) => {
   articles = articles || [];
   const options = {
     renderNode: {
-      [BLOCKS.HEADING_1]: (node, children) => {
+      [BLOCKS.HEADING_1]: (_, children) => {
         return (
-          <h1 className="font-heading text-5xl w-full text-center inline-block mb-5">
+          <h1 className="inline-block w-full mb-5 text-5xl text-center font-heading">
             {children}
           </h1>
         );
       },
-      [BLOCKS.EMBEDDED_ENTRY]: (node, children) => {
+      [BLOCKS.EMBEDDED_ENTRY]: (node) => {
         return getLandingPageModule(node.data.target);
       },
     },
   };
+  const documentJSX = documentToReactComponents(pageContent.json, options);
   return (
     <Layout>
       <div className="flex flex-wrap">
@@ -75,9 +62,9 @@ const PageTemplate = ({ data }) => {
             content="Chocolate free is a culinary diary of a chocoholic, sweet tooth young lady trying to re-create new sweet fruity and chocolaty version of some classic, or not, deserts."
           />
         </Helmet>
-        <div className={`${hideSideBar ? '' : 'md:w-2/3'} flex flex-wrap`}>
-          <div>{documentToReactComponents(pageContent.json, options)}</div>
-          <div className="w-full flex flex-wrap">
+        <div className={`${hideSideBar ? "" : "md:w-2/3"} flex flex-wrap`}>
+          {documentJSX && <div>{documentJSX}</div>}
+          <div className="grid max-h-0 p-2 gap-5 max-2lg mx-auto sm:grid-cols-2 lg:max-w-none">
             {articles
               .sort((a, b) => {
                 const d1 = new Date(a.publishDate);
