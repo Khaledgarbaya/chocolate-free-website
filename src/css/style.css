@@ -13,6 +13,9 @@ body {
 .font-heading {
   font-family: 'Libre Caslon Text', serif;
 }
+.ais-Highlight-highlighted {
+  @apply not-italic font-bold bg-orange-300;
+}
 .ais-PoweredBy-text {
   @apply text-sm;
 }
@@ -33,7 +36,7 @@ h6 {
 }
 
 ul {
-  @apply list-disc p-4;
+  @apply p-4 list-disc;
 }
 
 ol {

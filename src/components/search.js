@@ -1,16 +1,15 @@
-import React from 'react';
-import { render } from 'react-dom';
-import { InstantSearch, Highlight } from 'react-instantsearch/dom';
-import { PoweredBy } from 'react-instantsearch-dom';
-import { connectAutoComplete } from 'react-instantsearch/connectors';
-import Autocomplete from 'downshift';
-import { navigate } from 'gatsby';
+import React from "react";
+import { InstantSearch, Highlight } from "react-instantsearch/dom";
+import { PoweredBy } from "react-instantsearch-dom";
+import { connectAutoComplete } from "react-instantsearch/connectors";
+import Autocomplete from "downshift";
+import { navigate } from "gatsby";
 
 function RecipeAutoComplete({ refine, hits }) {
   return (
     <Autocomplete
-      itemToString={i => (i ? i.title : i)}
-      onChange={item => navigate(`/article/${item.slug}.html`)}
+      itemToString={(i) => (i ? i.title : i)}
+      onChange={(item) => navigate(`/article/${item.slug}.html`)}
     >
       {({
         getInputProps,
@@ -40,8 +39,8 @@ function RecipeAutoComplete({ refine, hits }) {
                     index,
                     style: {
                       backgroundColor:
-                        highlightedIndex === index ? '#e3e3e6' : 'white',
-                      fontWeight: selectedItem === item ? '700' : 'normal',
+                        highlightedIndex === index ? "#e3e3e6" : "white",
+                      fontWeight: selectedItem === item ? "700" : "normal",
                     },
                   })}
                 >

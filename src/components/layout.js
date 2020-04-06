@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "gatsby";
 import * as PropTypes from "prop-types";
 import "../css/style.css";
 import Person from "../components/seo/person";
@@ -10,12 +9,12 @@ const propTypes = {
 };
 const Header = () => {
   return (
-    <div className="w-full flex flex-wrap px-2 py-2 mb-6 items-center justify-between">
+    <div className="flex flex-wrap items-center justify-between w-full px-2 py-2 mb-6">
       <Person />
 
-      <div className="px-4 py-2 w-full  mx-auto">
+      <div className="w-full px-4 py-2 mx-auto">
         <img
-          className="w-full max-w-sm block mx-auto"
+          className="block w-full max-w-sm mx-auto"
           src="//images.ctfassets.net/0w6gaytm0wfv/6vAc435jNusAyYWSkqQg8k/c4a0769881ac2511038ea3aa4e386340/chocolate-free-black.png"
           alt="Chocolate Free"
         />
@@ -29,15 +28,15 @@ class DefaultLayout extends React.Component {
     return (
       <div>
         <Header />
-        <main className="max-w-4xl mx-auto px-2 py-2">
+        <main className="max-w-4xl px-2 py-2 mx-auto">
           {this.props.children}
         </main>
 
-        <footer className="mt-4 border-t p-2 w-full font-paragraph">
+        <footer className="w-full p-2 mt-4 border-t font-paragraph">
           Copyright © 2017-2019 Chocolate free website, proudly powered by{" "}
           <a
             href="https://www.contentful.com"
-            className="text-blue-900 px-2 underline"
+            className="px-2 text-blue-900 underline"
           >
             Contentful
           </a>{" "}
