@@ -3,13 +3,7 @@ import PropTypes from "prop-types";
 import { Link } from "gatsby";
 class PostCard extends Component {
   render() {
-    const {
-      title,
-      featureImage,
-      slug,
-      contentModules,
-      category
-    } = this.props.post;
+    const { title, featureImage, slug, contentModules } = this.props.post;
     return (
       <article className="w-full px-2 py-2 flex flex-wrap">
         <img
@@ -18,22 +12,22 @@ class PostCard extends Component {
           className="w-full sm:w-1/2"
         />
         <div className="w-full sm:w-1/2 px-2 py-2">
-        <h3>
-          <Link to={`article/${slug}.html`}>{title}</Link>
-        </h3>
-        <div
-          dangerouslySetInnerHTML={{
-            __html: contentModules[0].copy.childMarkdownRemark.excerpt
-          }}
-        />
-      </div>
+          <h3>
+            <Link to={`article/${slug}.html`}>{title}</Link>
+          </h3>
+          <div
+            dangerouslySetInnerHTML={{
+              __html: contentModules[0].copy.childMarkdownRemark.excerpt,
+            }}
+          />
+        </div>
       </article>
     );
   }
 }
 
 PostCard.propTypes = {
-  post: PropTypes.object.isRequired
+  post: PropTypes.object.isRequired,
 };
 
 export default PostCard;

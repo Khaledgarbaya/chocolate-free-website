@@ -40,6 +40,7 @@ class InstaFeed extends Component {
           >
             <img
               className="mb-0"
+              alt={node.edge_media_to_caption.edges[0].node.text}
               key={i}
               src={node.thumbnail_resources[0].src}
             />

@@ -7,6 +7,8 @@ module.exports = {
     description: "Chocolate free website",
   },
   plugins: [
+    `gatsby-plugin-sharp`,
+    `gatsby-plugin-image`,
     {
       resolve: "gatsby-source-contentful",
       options: {
@@ -43,6 +45,7 @@ module.exports = {
       `,
         feeds: [
           {
+            title: 'Chocolate Free',
             serialize: ({ query: { site, allContentfulArticle } }) => {
               return allContentfulArticle.edges.map((edge) => {
                 const excerpt =
@@ -52,6 +55,7 @@ module.exports = {
                     : "";
                 return Object.assign({}, edge.node, {
                   description: excerpt,
+                  title: edge.node.title,
                   url:
                     site.siteMetadata.siteUrl +
                     "/article/" +
@@ -120,12 +124,6 @@ module.exports = {
         ],
         theme_color: "#e8e8e8",
         display: "standalone",
-      },
-    },
-    {
-      resolve: `gatsby-plugin-offline`,
-      options: {
-        navigateFallbackWhitelist: [],
       },
     },
     "gatsby-transformer-remark",
