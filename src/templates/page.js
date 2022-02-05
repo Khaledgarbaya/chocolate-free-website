@@ -1,11 +1,11 @@
 import React from "react";
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { BLOCKS } from "@contentful/rich-text-types";
 import { graphql, Link } from "gatsby";
 import SideBar from "../components/SideBar";
 import getLandingPageModule from "../utils/getLandingPageModule";
 import Helmet from "react-helmet";
 import Layout from "../components/layout";
+import { renderRichText } from "gatsby-source-contentful/rich-text";
 
 const Article = ({ node }) => {
   const excerpt =
@@ -35,7 +35,6 @@ const Article = ({ node }) => {
 };
 const PageTemplate = ({ data }) => {
   let { articles, pageContent, hideSideBar } = data.contentfulPage;
-  pageContent = pageContent || {};
   articles = articles || [];
   const options = {
     renderNode: {
@@ -47,11 +46,11 @@ const PageTemplate = ({ data }) => {
         );
       },
       [BLOCKS.EMBEDDED_ENTRY]: (node) => {
+        console.log(node);
         return getLandingPageModule(node.data.target);
       },
     },
   };
-  const documentJSX = documentToReactComponents(pageContent.json, options);
   return (
     <Layout>
       <div className="flex flex-wrap">
@@ -63,7 +62,7 @@ const PageTemplate = ({ data }) => {
           />
         </Helmet>
         <div className={`${hideSideBar ? "" : "md:w-2/3"} flex flex-wrap`}>
-          {documentJSX && <div>{documentJSX}</div>}
+          {pageContent && <div>{renderRichText(pageContent, options)}</div>}
           <div
             className={`${
               articles.length < 3 ? "max-h-0" : ""
@@ -99,7 +98,31 @@ export const query = graphql`
       slug
       hideSideBar
       pageContent {
-        json
+        raw
+        references {
+          ... on ContentfulLandingPageGallery {
+            __typename
+            contentful_id
+            images {
+              title
+              gatsbyImageData(
+                width: 312
+                height: 486
+                placeholder: TRACED_SVG
+                quality: 100
+              )
+            }
+          }
+          ... on ContentfulLandingPageImage {
+            __typename
+            contentful_id
+            image {
+              file {
+                url
+              }
+            }
+          }
+        }
       }
       articles {
         author {

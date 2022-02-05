@@ -1,13 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Helmet from 'react-helmet';
+import React from "react";
+import Helmet from "react-helmet";
 
 function Person() {
   return (
     <Helmet>
-    <script type="application/ld+json">
-      {
-        `
+      <script type="application/ld+json">
+        {`
         {
           "@context":"https://schema.org",
           "@type":"Person",
@@ -22,9 +20,8 @@ function Person() {
           "@id":"#person",
           "name":"Amal Nasri"
         }
-        `
-      }
-    </script>
+        `}
+      </script>
     </Helmet>
   );
 }

@@ -2,7 +2,6 @@ const _ = require(`lodash`);
 const Promise = require(`bluebird`);
 const path = require(`path`);
 const slash = require(`slash`);
-const paginate = require('./utils/paginate');
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
@@ -10,7 +9,7 @@ exports.createPages = ({ graphql, actions }) => {
     graphql(
       `
         {
-          allContentfulArticle(limit: 1000) {
+          allContentfulArticle(sort: {order: DESC, fields: publishDate}) {
             edges {
               node {
                 id
@@ -39,13 +38,15 @@ exports.createPages = ({ graphql, actions }) => {
         const articleTemplate = path.resolve(`./src/templates/article.js`);
         const pageTemplate = path.resolve('./src/templates/page.js');
 
-        _.each(result.data.allContentfulNavigation.edges, edge => {
+        _.each(result.data.allContentfulNavigation.edges, (edge, index) => {
           _.each(edge.node.navigationElements, navElement => {
+            console.log(navElement.page.slug)
             createPage({
               path: navElement.page.slug,
               component: slash(pageTemplate),
               context: {
                 slug: navElement.page.slug,
+                defer: index >= 10
               },
             });
           });
@@ -62,24 +63,5 @@ exports.createPages = ({ graphql, actions }) => {
         });
       })
       .then(resolve);
-  });
-};
-exports.onCreatePage = async ({ page, actions }) => {
-  const { createPage } = actions;
-  return new Promise((resolve, reject) => {
-    if (page.path.match(/^\/HorsSujet/)) {
-      page.matchPath = '/hors-sujet.html';
-
-      // Update the page.
-      createPage(page);
-    }
-
-    if (page.path.match(/^\/About/)) {
-      page.matchPath = '/about.html';
-
-      createPage(page);
-    }
-
-    resolve();
   });
 };

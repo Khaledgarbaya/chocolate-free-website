@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { Link } from 'gatsby';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
 class LandingPageGallery extends Component {
   render() {
@@ -8,11 +8,12 @@ class LandingPageGallery extends Component {
     console.log({ data });
     return (
       <div className="flex flex-wrap w-full">
-        {data.fields.images['en-US'].map((image, i) => (
-          <img
+        {data.images.map((image, i) => (
+          <GatsbyImage
+            alt={image.title}
+            image={getImage(image)}
             className="w-full sm:w-1/2 px-2"
             key={i}
-            src={`https:${image.fields.file['en-US'].url}?w=312&h=486&fit=fill`}
           />
         ))}
       </div>
