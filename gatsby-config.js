@@ -45,7 +45,7 @@ module.exports = {
       `,
         feeds: [
           {
-            title: 'Chocolate Free',
+            title: "Chocolate Free",
             serialize: ({ query: { site, allContentfulArticle } }) => {
               return allContentfulArticle.edges.map((edge) => {
                 const excerpt =
@@ -179,7 +179,6 @@ module.exports = {
         ],
       },
     },
-    "gatsby-plugin-netlify",
     "gatsby-plugin-postcss",
     {
       resolve: "gatsby-plugin-purgecss",
