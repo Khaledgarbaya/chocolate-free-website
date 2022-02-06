@@ -57,8 +57,8 @@ exports.createPages = ({ graphql, actions }) => {
             context: {
               id: edge.node.id,
               slug: edge.node.slug,
-              defer: index > 10,
             },
+            defer: index > 10,
           });
         });
       })
