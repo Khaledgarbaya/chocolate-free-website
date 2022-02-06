@@ -52,7 +52,7 @@ exports.createPages = ({ graphql, actions }) => {
         _.each(result.data.allContentfulArticle.edges, (edge, index) => {
           createRedirect({
             fromPath: `/article/${edge.node.slug}.html`,
-            toPath: `/article/${edge.node.path}`,
+            toPath: `/article/${edge.node.slug}`,
             isPermanent: true,
           });
           createPage({
