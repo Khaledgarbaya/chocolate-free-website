@@ -4,7 +4,7 @@ const path = require(`path`);
 const slash = require(`slash`);
 
 exports.createPages = ({ graphql, actions }) => {
-  const { createPage } = actions;
+  const { createPage, createRedirect } = actions;
   return new Promise((resolve, reject) => {
     graphql(
       `
@@ -40,7 +40,6 @@ exports.createPages = ({ graphql, actions }) => {
 
         _.each(result.data.allContentfulNavigation.edges, (edge) => {
           _.each(edge.node.navigationElements, (navElement) => {
-            console.log(navElement.page.slug);
             createPage({
               path: navElement.page.slug,
               component: slash(pageTemplate),
@@ -51,8 +50,13 @@ exports.createPages = ({ graphql, actions }) => {
           });
         });
         _.each(result.data.allContentfulArticle.edges, (edge, index) => {
+          createRedirect({
+            fromPath: `/article/${edge.node.slug}.html`,
+            toPath: `/article/${edge.node.path}`,
+            isPermanent: true,
+          });
           createPage({
-            path: `/article/${edge.node.slug}.html`,
+            path: `/article/${edge.node.slug}`,
             component: slash(articleTemplate),
             context: {
               id: edge.node.id,
