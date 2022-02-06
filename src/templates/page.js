@@ -15,7 +15,7 @@ const Article = ({ node }) => {
   return (
     <Link
       className="block overflow-hidden rounded-lg shadow hover:shadow-xl"
-      to={`/article/${node.slug}.html`}
+      to={`/article/${node.slug}`}
     >
       <div className="relative pb-2/3">
         <img
