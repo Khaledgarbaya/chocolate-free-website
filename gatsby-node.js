@@ -9,7 +9,7 @@ exports.createPages = ({ graphql, actions }) => {
     graphql(
       `
         {
-          allContentfulArticle(sort: {order: DESC, fields: publishDate}) {
+          allContentfulArticle(sort: { order: DESC, fields: publishDate }) {
             edges {
               node {
                 id
@@ -31,33 +31,33 @@ exports.createPages = ({ graphql, actions }) => {
         }
       `
     )
-      .then(result => {
+      .then((result) => {
         if (result.errors) {
           reject(result.errors);
         }
         const articleTemplate = path.resolve(`./src/templates/article.js`);
-        const pageTemplate = path.resolve('./src/templates/page.js');
+        const pageTemplate = path.resolve("./src/templates/page.js");
 
-        _.each(result.data.allContentfulNavigation.edges, (edge, index) => {
-          _.each(edge.node.navigationElements, navElement => {
-            console.log(navElement.page.slug)
+        _.each(result.data.allContentfulNavigation.edges, (edge) => {
+          _.each(edge.node.navigationElements, (navElement) => {
+            console.log(navElement.page.slug);
             createPage({
               path: navElement.page.slug,
               component: slash(pageTemplate),
               context: {
                 slug: navElement.page.slug,
-                defer: index >= 10
               },
             });
           });
         });
-        _.each(result.data.allContentfulArticle.edges, edge => {
+        _.each(result.data.allContentfulArticle.edges, (edge, index) => {
           createPage({
             path: `/article/${edge.node.slug}.html`,
             component: slash(articleTemplate),
             context: {
               id: edge.node.id,
               slug: edge.node.slug,
+              defer: index > 10,
             },
           });
         });
