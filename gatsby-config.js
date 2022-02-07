@@ -180,6 +180,7 @@ module.exports = {
       },
     },
     "gatsby-plugin-postcss",
+    "gatsby-plugin-gatsby-cloud",
     {
       resolve: "gatsby-plugin-purgecss",
       options: {
