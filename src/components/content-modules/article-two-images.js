@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import * as PropTypes from 'prop-types'
-
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 class ArticleTwoImages extends Component {
   
   render () {
@@ -17,7 +17,8 @@ class ArticleTwoImages extends Component {
           title={left.title}/>
       </div>
       <div className='w-full md:w-1/2 p-2'>
-        <img src={`${right.file.url}?w=450`}
+        <GatsbyImage
+          image={getImage(right)}
           alt={right.title}
           className="m-0 w-full inline-block"
           title={right.title}/>

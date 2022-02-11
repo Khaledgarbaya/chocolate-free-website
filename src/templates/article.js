@@ -53,7 +53,7 @@ class ArticleTemplate extends React.Component {
             <Article
               updateTime={updatedAt}
               publishedTime={publishDate}
-              url={`https://chocolate-free.com/article/${slug}.html`}
+              url={`https://chocolate-free.com/article/${slug}`}
             />
 
             <Twitter
@@ -101,6 +101,11 @@ export const pageQuery = graphql`
           }
           image {
             title
+            gatsbyImageData(
+              width: 400
+              placeholder: TRACED_SVG
+              quality: 80
+            )
             file {
               url
             }
@@ -128,6 +133,11 @@ export const pageQuery = graphql`
           left {
             title
             description
+            gatsbyImageData(
+              width: 420
+              placeholder: TRACED_SVG
+              quality: 80
+            )
             file {
               url
             }
@@ -135,6 +145,11 @@ export const pageQuery = graphql`
           right {
             title
             description
+            gatsbyImageData(
+              width: 420
+              placeholder: TRACED_SVG
+              quality: 80
+            )
             file {
               url
             }
@@ -146,6 +161,11 @@ export const pageQuery = graphql`
           }
           image {
             title
+            gatsbyImageData(
+              width: 600
+              placeholder: TRACED_SVG
+              quality: 80
+            )
             file {
               url
             }
@@ -156,6 +176,11 @@ export const pageQuery = graphql`
       updatedAt
       featureImage {
         title
+        gatsbyImageData(
+          width: 420
+          placeholder: TRACED_SVG
+          quality: 80
+        )
         file {
           url
         }
