@@ -106,9 +106,6 @@ export const pageQuery = graphql`
               placeholder: TRACED_SVG
               quality: 80
             )
-            file {
-              url
-            }
           }
           title
           totalTime
@@ -138,9 +135,6 @@ export const pageQuery = graphql`
               placeholder: TRACED_SVG
               quality: 80
             )
-            file {
-              url
-            }
           }
           right {
             title
@@ -150,9 +144,6 @@ export const pageQuery = graphql`
               placeholder: TRACED_SVG
               quality: 80
             )
-            file {
-              url
-            }
           }
         }
         ... on ContentfulArticleImage {
@@ -166,9 +157,6 @@ export const pageQuery = graphql`
               placeholder: TRACED_SVG
               quality: 80
             )
-            file {
-              url
-            }
           }
         }
       }
@@ -181,9 +169,6 @@ export const pageQuery = graphql`
           placeholder: TRACED_SVG
           quality: 80
         )
-        file {
-          url
-        }
       }
       author {
         fullName
