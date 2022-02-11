@@ -5,7 +5,6 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image";
 class LandingPageGallery extends Component {
   render() {
     const { data } = this.props;
-    console.log({ data });
     return (
       <div className="flex flex-wrap w-full">
         {data.images.map((image, i) => (

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import * as PropTypes from "prop-types";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
 class Recipe extends Component {
   print() {
@@ -48,7 +49,7 @@ class Recipe extends Component {
             />
 
             <div className="w-full md:w-1/2">
-              <img alt={title} src={image.file.url} />
+              <GatsbyImage alt={title} image={getImage(image)} />
               <button
                 className="print-button"
                 onClick={() => {

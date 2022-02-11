@@ -9,7 +9,6 @@ const componentsMap = {
   ContentfulLandingPageGallery: LandingPageGallery,
 };
 export const getLandingPageModule = (module, index) => {
-  console.log(module);
   const Component = componentsMap[module.__typename];
   if (Component) {
     return <Component data={module} key={index} />;

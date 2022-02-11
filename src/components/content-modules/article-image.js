@@ -1,16 +1,15 @@
 import React, { Component } from "react";
 import * as PropTypes from "prop-types";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
 class ArticleImage extends Component {
   render() {
     const { image } = this.props.data;
     return (
-      <section>
+      <section className="flex justify-center">
         {image && (
-          <img
-            className="mx-auto"
-            src={`${image.file.url}?w=650`}
-            alt={image.title}
+          <GatsbyImage
+            image={getImage(image)}
             title={image.title}
           />
         )}
