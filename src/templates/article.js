@@ -103,7 +103,8 @@ export const pageQuery = graphql`
             title
             gatsbyImageData(
               width: 400
-              placeholder: TRACED_SVG
+              formats: AUTO
+              placeholder: BLURRED
               quality: 80
             )
           }
@@ -132,7 +133,8 @@ export const pageQuery = graphql`
             description
             gatsbyImageData(
               width: 420
-              placeholder: TRACED_SVG
+              formats: AUTO
+              placeholder: BLURRED
               quality: 80
             )
           }
@@ -141,7 +143,8 @@ export const pageQuery = graphql`
             description
             gatsbyImageData(
               width: 420
-              placeholder: TRACED_SVG
+              formats: AUTO
+              placeholder: BLURRED
               quality: 80
             )
           }
@@ -154,7 +157,8 @@ export const pageQuery = graphql`
             title
             gatsbyImageData(
               width: 600
-              placeholder: TRACED_SVG
+              formats: AUTO
+              placeholder: BLURRED
               quality: 80
             )
           }
@@ -166,7 +170,8 @@ export const pageQuery = graphql`
         title
         gatsbyImageData(
           width: 420
-          placeholder: TRACED_SVG
+          formats: AUTO
+          placeholder: BLURRED
           quality: 80
         )
       }
@@ -177,7 +182,12 @@ export const pageQuery = graphql`
           bio
         }
         avatar {
-          gatsbyImageData(width: 150)
+          gatsbyImageData(
+            width: 150
+            formats: AUTO
+            placeholder: BLURRED
+            quality: 80
+          )
         }
       }
     }
