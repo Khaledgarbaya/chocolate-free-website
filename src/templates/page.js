@@ -46,7 +46,6 @@ const PageTemplate = ({ data }) => {
         );
       },
       [BLOCKS.EMBEDDED_ENTRY]: (node) => {
-        console.log(node);
         return getLandingPageModule(node.data.target);
       },
     },
