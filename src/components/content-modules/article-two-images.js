@@ -11,7 +11,8 @@ class ArticleTwoImages extends Component {
     return (
     <section className='flex flex-wrap justify-center w-full'>
       <div className='w-full md:w-1/2 p-2'>
-        <img src={`${left.file.url}?w=450`}
+        <GatsbyImage
+          image={getImage(left)}
           alt={left.title}
           className="m-0 w-full inline-block"
           title={left.title}/>
