@@ -38,17 +38,17 @@ exports.createPages = ({ graphql, actions }) => {
         const articleTemplate = path.resolve(`./src/templates/article.js`);
         const pageTemplate = path.resolve("./src/templates/page.js");
 
-        _.each(result.data.allContentfulNavigation.edges, (edge) => {
-          _.each(edge.node.navigationElements, (navElement) => {
-            createPage({
-              path: navElement.page.slug,
-              component: slash(pageTemplate),
-              context: {
-                slug: navElement.page.slug,
-              },
-            });
-          });
-        });
+        // _.each(result.data.allContentfulNavigation.edges, (edge) => {
+        //   _.each(edge.node.navigationElements, (navElement) => {
+        //     createPage({
+        //       path: navElement.page.slug,
+        //       component: slash(pageTemplate),
+        //       context: {
+        //         slug: navElement.page.slug,
+        //       },
+        //     });
+        //   });
+        // });
         _.each(result.data.allContentfulArticle.edges, (edge, index) => {
           createRedirect({
             fromPath: `/article/${edge.node.slug}.html`,

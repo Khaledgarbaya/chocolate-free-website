@@ -18,7 +18,7 @@ const Article = ({ node }) => {
       className="block overflow-hidden rounded-lg shadow hover:shadow-xl"
       to={`/article/${node.slug}`}
     >
-      <div className="relative">
+      <div className="relative pb-2/3">
         <GatsbyImage
           className="absolute object-cover w-full h-full"
           image={getImage(node.featureImage)}
@@ -92,8 +92,8 @@ const PageTemplate = ({ data }) => {
 };
 
 export const query = graphql`
-  query NewPageQuery($slug: String!) {
-    contentfulPage(slug: { eq: $slug }) {
+  query($id: String!) {
+    contentfulPage(id: { eq: $id }) {
       title
       slug
       hideSideBar
