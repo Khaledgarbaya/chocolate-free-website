@@ -1,15 +1,15 @@
 import React from "react";
 import { graphql } from "gatsby";
 import * as PropTypes from "prop-types";
-import ArticleHeader from "../components/ArticleHeader";
-import DisqusThread from "../components/DisqusThread";
-import Author from "../components/Author";
-import OG from "../components/seo/og";
-import Article from "../components/seo/article";
-import General from "../components/seo/general";
-import Twitter from "../components/seo/twitter";
-import getArticleModule from "../utils/getArticleModule";
-import Layout from "../components/layout";
+import ArticleHeader from "../../components/ArticleHeader";
+import DisqusThread from "../../components/DisqusThread";
+import Author from "../../components/Author";
+import OG from "../../components/seo/og";
+import Article from "../../components/seo/article";
+import General from "../../components/seo/general";
+import Twitter from "../../components/seo/twitter";
+import getArticleModule from "../../utils/getArticleModule";
+import Layout from "../../components/layout";
 
 const propTypes = {
   data: PropTypes.object.isRequired,
@@ -79,8 +79,8 @@ ArticleTemplate.propTypes = propTypes;
 export default ArticleTemplate;
 
 export const pageQuery = graphql`
-  query articleQuery($slug: String!) {
-    contentfulArticle(slug: { eq: $slug }) {
+  query articleQuery($id: String!) {
+    contentfulArticle(id: { eq: $id }) {
       title
       slug
       contentModules {
