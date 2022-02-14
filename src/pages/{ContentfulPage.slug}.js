@@ -108,7 +108,7 @@ export const query = graphql`
               gatsbyImageData(
                 width: 312
                 height: 486
-                placeholder: TRACED_SVG
+                placeholder: BLURRED
                 quality: 100
               )
             }
@@ -117,9 +117,11 @@ export const query = graphql`
             __typename
             contentful_id
             image {
-              file {
-                url
-              }
+              gatsbyImageData(
+                width: 900
+                placeholder: BLURRED
+                quality: 100
+              )
             }
           }
         }

@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
 class LandingPageImage extends Component {
   render() {
     const { data } = this.props;
+    console.log(data)
     return (
       <div className="w-full px-4 py-4">
         <Link to="/" rel="noopener">
-          <img
+          <GatsbyImage
             className="block mx-auto"
-            src={data.fields.image['en-US'].file['en-US'].url}
+            image={getImage(data.image)}
             alt="Chocolate Free"
           />
         </Link>
