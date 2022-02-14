@@ -32,7 +32,7 @@ class DefaultLayout extends React.Component {
           {this.props.children}
         </main>
 
-        <footer className="w-full p-2 mt-4 border-t font-paragraph">
+        <footer className="w-full p-2 mt-4 border-t font-paragraph text-center">
           Copyright © 2017-2019 Chocolate free website, proudly powered by{" "}
           <a
             href="https://www.contentful.com"
