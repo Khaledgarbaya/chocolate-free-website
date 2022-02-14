@@ -6,6 +6,7 @@ import getLandingPageModule from "../utils/getLandingPageModule";
 import Helmet from "react-helmet";
 import Layout from "../components/layout";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 const Article = ({ node }) => {
   const excerpt =
@@ -18,9 +19,9 @@ const Article = ({ node }) => {
       to={`/article/${node.slug}`}
     >
       <div className="relative pb-2/3">
-        <img
+        <GatsbyImage
           className="absolute object-cover w-full h-full"
-          src={node.featureImage.file.url}
+          image={getImage(node.featureImage)}
           alt={node.featureImage.title}
         />
       </div>
@@ -146,9 +147,13 @@ export const query = graphql`
         }
         featureImage {
           title
-          file {
-            url
-          }
+          gatsbyImageData(
+            width: 550
+            height: 368
+            formats: AUTO
+            placeholder: BLURRED
+            quality: 100
+          )
         }
       }
     }
