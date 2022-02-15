@@ -18,7 +18,7 @@ const Article = ({ node }) => {
       className="block overflow-hidden rounded-lg shadow hover:shadow-xl"
       to={`/article/${node.slug}`}
     >
-      <div className="relative pb-2/3">
+      <div className="relative">
         <GatsbyImage
           className="absolute object-cover w-full h-full"
           image={getImage(node.featureImage)}
