@@ -6,7 +6,6 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image";
 class LandingPageImage extends Component {
   render() {
     const { data } = this.props;
-    console.log(data)
     return (
       <div className="w-full px-4 py-4">
         <Link to="/" rel="noopener">
