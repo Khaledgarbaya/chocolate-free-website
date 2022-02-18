@@ -82,8 +82,9 @@ export async function config() {
     }
   }`
   return ({ params }) => {
+    const slugs = data.allContentfulArticle.nodes.map(s => s.slug)
     return {
-      defer: data.allContentfulArticle.nodes.indexOf(params.slug) > 9,
+      defer: slugs.indexOf(params.slug) > 9,
     }
   }
 }
