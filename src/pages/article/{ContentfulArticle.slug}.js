@@ -1,6 +1,5 @@
 import React from "react";
 import { graphql } from "gatsby";
-import * as PropTypes from "prop-types";
 import ArticleHeader from "../../components/ArticleHeader";
 import DisqusThread from "../../components/DisqusThread";
 import Author from "../../components/Author";
@@ -10,10 +9,6 @@ import General from "../../components/seo/general";
 import Twitter from "../../components/seo/twitter";
 import getArticleModule from "../../utils/getArticleModule";
 import Layout from "../../components/layout";
-
-const propTypes = {
-  data: PropTypes.object.isRequired,
-};
 
 class ArticleTemplate extends React.Component {
   render() {
@@ -74,9 +69,24 @@ class ArticleTemplate extends React.Component {
   }
 }
 
-ArticleTemplate.propTypes = propTypes;
-
 export default ArticleTemplate;
+
+export async function config() {
+  // Optionally use GraphQL here
+  const {data} = graphql`
+  {
+    allContentfulArticle(sort: {order: DESC, fields: publishDate}) {
+      nodes {
+        slug
+      }
+    }
+  }`
+  return ({ params }) => {
+    return {
+      defer: data.allContentfulArticle.nodes.indexOf(params.slug) > 9,
+    }
+  }
+}
 
 export const pageQuery = graphql`
   query articleQuery($id: String!) {
