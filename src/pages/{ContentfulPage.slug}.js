@@ -6,7 +6,7 @@ import getLandingPageModule from "../utils/getLandingPageModule";
 import Helmet from "react-helmet";
 import Layout from "../components/layout";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
-import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
 const Article = ({ node }) => {
   const excerpt =
@@ -18,9 +18,9 @@ const Article = ({ node }) => {
       className="block overflow-hidden rounded-lg shadow hover:shadow-xl"
       to={`/article/${node.slug}`}
     >
-      <div className="relative">
+      <div className="aspect-video">
         <GatsbyImage
-          className="absolute object-cover w-full h-full"
+          className="object-cover w-full h-full"
           image={getImage(node.featureImage)}
           alt={node.featureImage.title}
         />
@@ -92,7 +92,7 @@ const PageTemplate = ({ data }) => {
 };
 
 export const query = graphql`
-  query($id: String!) {
+  query ($id: String!) {
     contentfulPage(id: { eq: $id }) {
       title
       slug
@@ -117,11 +117,7 @@ export const query = graphql`
             __typename
             contentful_id
             image {
-              gatsbyImageData(
-                width: 900
-                placeholder: BLURRED
-                quality: 100
-              )
+              gatsbyImageData(width: 900, placeholder: BLURRED, quality: 100)
             }
           }
         }
@@ -162,3 +158,4 @@ export const query = graphql`
   }
 `;
 export default PageTemplate;
+

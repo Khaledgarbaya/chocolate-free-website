@@ -4,7 +4,7 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image";
 const Author = ({ author }) => {
   const image = getImage(author.avatar);
   return (
-    <div className="flex flex-wrap justify-center items-center font-paragraph mt-6 border-t p-2">
+    <div className="print:hidden flex flex-wrap justify-center items-center font-paragraph mt-6 border-t p-2">
       <div className="w-full sm:w-1/4 text-center">
         {image && (
           <GatsbyImage

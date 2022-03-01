@@ -6,7 +6,7 @@ class ArticleImage extends Component {
   render() {
     const { image } = this.props.data;
     return (
-      <section className="flex justify-center">
+      <section className="flex justify-center  print:hidden">
         {image && (
           <GatsbyImage
             image={getImage(image)}

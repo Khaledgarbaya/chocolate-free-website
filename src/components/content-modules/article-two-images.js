@@ -9,7 +9,7 @@ class ArticleTwoImages extends Component {
       right
     } = this.props.data
     return (
-    <section className='flex flex-wrap justify-center w-full'>
+    <section className='flex flex-wrap justify-center w-full  print:hidden'>
       <div className='w-full md:w-1/2 p-2'>
         <GatsbyImage
           image={getImage(left)}

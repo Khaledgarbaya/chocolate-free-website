@@ -61,7 +61,7 @@ class ArticleTemplate extends React.Component {
             {contentModules &&
               contentModules.map((module, i) => getArticleModule(module, i))}
             <Author author={author} />
-            <DisqusThread id={slug} path={slug} title={title} />
+            <div className="print:hidden"><DisqusThread id={slug} path={slug} title={title} /></div>
           </article>
         </div>
       </Layout>

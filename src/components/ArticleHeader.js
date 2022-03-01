@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "gatsby";
 const ArticleHeader = ({ node }) => {
   return (
-    <div className="article__header">
+    <div className="article__header  print:hidden">
       <h1 className="font-heading text-5xl w-full text-center inline-block mb-5">
         <Link to={`/article/${node.slug}.html`}>{node.title}</Link>
       </h1>

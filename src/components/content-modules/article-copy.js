@@ -6,7 +6,7 @@ class ArticleCopy extends Component {
     const { html } = this.props.data.copy.childMarkdownRemark;
     return (
       <section
-        className="p-2 text-paragraph block"
+        className="p-2 text-paragraph block  print:hidden"
         dangerouslySetInnerHTML={{ __html: html }}
       />
     );
