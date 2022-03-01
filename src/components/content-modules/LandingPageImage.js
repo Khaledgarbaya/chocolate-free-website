@@ -7,7 +7,7 @@ class LandingPageImage extends Component {
   render() {
     const { data } = this.props;
     return (
-      <div className="w-full px-4 py-4">
+      <div className="w-full px-4 py-4  print:hidden">
         <Link to="/" rel="noopener">
           <GatsbyImage
             className="block mx-auto"

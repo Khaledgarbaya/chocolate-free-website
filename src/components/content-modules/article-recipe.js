@@ -23,15 +23,15 @@ class Recipe extends Component {
           {title}{" "}
         </h2>
         <div className="flex flex-wrap text-paragraph">
-          <div className="w-full p-6 md:w-1/3 border border-dotted">
+          <div className="w-full p-6 md:w-1/3 print:w-1/3 border border-dotted">
             <span className="label">PREP TIME</span>
             <span className="value">{prepTime}</span>
           </div>
-          <div className="w-full p-6 md:w-1/3 border border-dotted">
+          <div className="w-full p-6 md:w-1/3 print:w-1/3 border border-dotted">
             <span className="label">COOK Time</span>
             <span className="value">{cookTime}</span>
           </div>
-          <div className="w-full p-6 md:w-1/3 border border-dotted">
+          <div className="w-full p-6 md:w-1/3 print:w-1/3 border border-dotted">
             <span className="label">TOTAL Time</span>
             <span className="value">{totalTime}</span>
           </div>
@@ -42,16 +42,16 @@ class Recipe extends Component {
           </h2>
           <div className="flex flex-wrap items-center">
             <div
-              className="w-full md:w-1/2 p-4"
+              className="w-full md:w-1/2 p-4 print:w-1/2"
               dangerouslySetInnerHTML={{
                 __html: ingredients.childMarkdownRemark.html,
               }}
             />
 
-            <div className="w-full md:w-1/2">
+            <div className="w-full md:w-1/2 print:w-1/2">
               <GatsbyImage alt={title} image={getImage(image)} />
               <button
-                className="print-button"
+                className="print-button print:hidden"
                 onClick={() => {
                   this.print();
                 }}

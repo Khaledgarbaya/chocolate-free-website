@@ -9,7 +9,7 @@ const propTypes = {
 };
 const Header = () => {
   return (
-    <div className="flex flex-wrap items-center justify-between w-full px-2 py-2 mb-6">
+    <div className="print:hidden flex flex-wrap items-center justify-between w-full px-2 py-2 mb-6">
       <Person />
 
       <div className="w-full px-4 py-2 mx-auto">
@@ -32,7 +32,7 @@ class DefaultLayout extends React.Component {
           {this.props.children}
         </main>
 
-        <footer className="w-full p-2 mt-4 border-t font-paragraph text-center">
+        <footer className="w-full p-2 mt-4 border-t font-paragraph text-center print:hidden">
           Copyright © 2017-2019 Chocolate free website, proudly powered by{" "}
           <a
             href="https://www.contentful.com"
