@@ -13,7 +13,7 @@ module.exports = {
       resolve: "gatsby-source-contentful",
       options: {
         spaceId: process.env.CHOCOLATE_FREE_CF_SPACE,
-        host: process.env.CONTENTFUL_HOST || "cdn.contentful.com"
+        host: process.env.CONTENTFUL_HOST || "cdn.contentful.com",
         accessToken: process.env.CHOCOLATE_FREE_CF_TOKEN,
       },
     },
