@@ -2,7 +2,7 @@ import React from "react";
 import * as PropTypes from "prop-types";
 import "../css/style.css";
 import Person from "../components/seo/person";
-import MainMenu from "../components/main-menu";
+import { Slice } from "gatsby";
 
 const propTypes = {
   children: PropTypes.object.isRequired,
@@ -19,7 +19,7 @@ const Header = () => {
           alt="Chocolate Free"
         />
       </div>
-      <MainMenu />
+      <Slice alias="main-menu" />
     </div>
   );
 };

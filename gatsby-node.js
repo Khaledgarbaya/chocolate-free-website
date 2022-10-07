@@ -1,15 +1,18 @@
 const _ = require(`lodash`);
 const Promise = require(`bluebird`);
 const path = require(`path`);
-const slash = require(`slash`);
 
 exports.createPages = ({ graphql, actions }) => {
-  const { createPage, createRedirect } = actions;
+  const { createSlice, createRedirect } = actions;
+  createSlice({
+    id: `main-menu`,
+    component: require.resolve(`./src/components/main-menu.js`),
+  });
   return new Promise((resolve, reject) => {
     graphql(
       `
         {
-          allContentfulArticle(sort: { order: DESC, fields: publishDate }) {
+          allContentfulArticle(sort: { publishDate: DESC }) {
             edges {
               node {
                 id

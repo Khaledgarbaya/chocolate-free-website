@@ -61,7 +61,9 @@ class ArticleTemplate extends React.Component {
             {contentModules &&
               contentModules.map((module, i) => getArticleModule(module, i))}
             <Author author={author} />
-            <div className="print:hidden"><DisqusThread id={slug} path={slug} title={title} /></div>
+            <div className="print:hidden">
+              <DisqusThread id={slug} path={slug} title={title} />
+            </div>
           </article>
         </div>
       </Layout>
@@ -73,20 +75,21 @@ export default ArticleTemplate;
 
 export async function config() {
   // Optionally use GraphQL here
-  const {data} = graphql`
-  {
-    allContentfulArticle(sort: {order: DESC, fields: publishDate}) {
-      nodes {
-        slug
+  const { data } = graphql`
+    {
+      allContentfulArticle(sort: { publishDate: DESC }) {
+        nodes {
+          slug
+        }
       }
     }
-  }`
+  `;
   return ({ params }) => {
-    const slugs = data.allContentfulArticle.nodes.map(s => s.slug)
+    const slugs = data.allContentfulArticle.nodes.map((s) => s.slug);
     return {
       defer: slugs.indexOf(params.slug) > 9,
-    }
-  }
+    };
+  };
 }
 
 export const pageQuery = graphql`
