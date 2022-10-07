@@ -74,7 +74,7 @@ module.exports = {
             {
               allContentfulArticle(
                 limit: 1000,
-                sort: { order: DESC, fields: [publishDate] },
+                sort: {publishDate: DESC},
               ) {
                 edges {
                   node {

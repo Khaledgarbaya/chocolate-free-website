@@ -1,21 +1,7 @@
-import React from 'react';
-import { useStaticQuery, graphql, Link } from 'gatsby';
+import React from "react";
+import { graphql, Link } from "gatsby";
 
-const MainMenu = () => {
-  const data = useStaticQuery(graphql`
-    query MainMenuQuery {
-      contentfulNavigation(slug: { eq: "main-menu" }) {
-        title
-        navigationElements {
-          title
-          id
-          page {
-            slug
-          }
-        }
-      }
-    }
-  `);
+const MainMenu = ({ data }) => {
   const { navigationElements = [] } = data.contentfulNavigation;
   return (
     <nav
@@ -35,4 +21,18 @@ const MainMenu = () => {
   );
 };
 
+export const query = graphql`
+  query MainMenuQuery {
+    contentfulNavigation(slug: { eq: "main-menu" }) {
+      title
+      navigationElements {
+        title
+        id
+        page {
+          slug
+        }
+      }
+    }
+  }
+`;
 export default MainMenu;
