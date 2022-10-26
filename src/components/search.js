@@ -5,7 +5,7 @@ import { connectAutoComplete } from "react-instantsearch/connectors";
 import Autocomplete from "downshift";
 import { navigate } from "gatsby";
 
-function RecipeAutoComplete({ refine, hits }) {
+const RecipeAutoComplete = ({ refine, hits }) => {
   return (
     <Autocomplete
       itemToString={(i) => (i ? i.title : i)}
@@ -53,11 +53,11 @@ function RecipeAutoComplete({ refine, hits }) {
       )}
     </Autocomplete>
   );
-}
+};
 
 const AutoCompleteWithData = connectAutoComplete(RecipeAutoComplete);
 
-function Search() {
+const Search = () => {
   return (
     <InstantSearch
       appId="D8B75J2QJC"
@@ -68,6 +68,6 @@ function Search() {
       <PoweredBy />
     </InstantSearch>
   );
-}
+};
 
 export default Search;

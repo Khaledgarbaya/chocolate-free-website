@@ -1,25 +1,25 @@
 import React from "react";
 import { graphql } from "gatsby";
-import ArticleHeader from "../../components/ArticleHeader";
-import DisqusThread from "../../components/DisqusThread";
-import Author from "../../components/Author";
-import OG from "../../components/seo/og";
-import Article from "../../components/seo/article";
-import General from "../../components/seo/general";
-import Twitter from "../../components/seo/twitter";
-import getArticleModule from "../../utils/getArticleModule";
-import Layout from "../../components/layout";
+import ArticleHeader from "../components/ArticleHeader";
+import DisqusThread from "../components/DisqusThread";
+import Author from "../components/Author";
+import OG from "../components/seo/og";
+import Article from "../components/seo/article";
+import General from "../components/seo/general";
+import Twitter from "../components/seo/twitter";
+import getArticleModule from "../utils/getArticleModule";
+import Layout from "../components/layout";
 
 const ArticleTemplate = ({ data }) => {
   const article = data.contentfulArticle;
-  const { title, slug, contentModules, author } = article;
+  const { title, slug, contentModules, author, id } = article;
   return (
     <Layout>
       <div className="content">
         <article className="article">
           <ArticleHeader node={article} />
           {contentModules &&
-            contentModules.map((module, i) => getArticleModule(module, i))}
+            contentModules.map((module, i) => getArticleModule(module, i, id))}
           <Author author={author} />
           <div className="print:hidden">
             <DisqusThread id={slug} path={slug} title={title} />
@@ -97,6 +97,7 @@ export const pageQuery = graphql`
     contentfulArticle(id: { eq: $id }) {
       title
       slug
+      id
       contentModules {
         ... on ContentfulArticleRecipe {
           internal {
