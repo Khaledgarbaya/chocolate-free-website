@@ -5,7 +5,13 @@ const ArticleImage = ({ data }) => {
   const { image } = data;
   return (
     <section className="flex justify-center  print:hidden">
-      {image && <GatsbyImage image={getImage(image)} title={image.title} />}
+      {image && (
+        <GatsbyImage
+          image={getImage(image)}
+          title={image.title}
+          alt={image.title}
+        />
+      )}
     </section>
   );
 };

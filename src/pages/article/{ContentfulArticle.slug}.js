@@ -10,69 +10,69 @@ import Twitter from "../../components/seo/twitter";
 import getArticleModule from "../../utils/getArticleModule";
 import Layout from "../../components/layout";
 
-class ArticleTemplate extends React.Component {
-  render() {
-    const article = this.props.data.contentfulArticle;
-    const {
-      title,
-      slug,
-      contentModules,
-      featureImage,
-      author,
-      publishDate,
-      updatedAt,
-    } = article;
-    const featuredImageUrl =
-      featureImage && featureImage.file ? featureImage.file.url : "";
-    const excerpt =
-      contentModules !== null
-        ? contentModules[0].copy.childMarkdownRemark.excerpt
-        : "";
-    return (
-      <Layout>
-        <div className="content">
-          <article className="article">
-            <OG
-              title={title}
-              locale="en-US"
-              type="article"
-              description={excerpt}
-              url={`https://chocolate-free.com/article/${slug}`}
-              siteName="Chocolate Free"
-              updateTime={updatedAt}
-              publishedTime={publishDate}
-              image={`https:${featuredImageUrl}?w=1200&h=630`}
-              imageSecure={`https:${featuredImageUrl}?w=1200&h=630`}
-            />
-
-            <Article
-              updateTime={updatedAt}
-              publishedTime={publishDate}
-              url={`https://chocolate-free.com/article/${slug}`}
-            />
-
-            <Twitter
-              title={title}
-              description={excerpt}
-              image={`https:${featuredImageUrl}?w=1200&h=630`}
-            />
-            <General title={title} description={excerpt} />
-            <ArticleHeader node={article} />
-            {contentModules &&
-              contentModules.map((module, i) => getArticleModule(module, i))}
-            <Author author={author} />
-            <div className="print:hidden">
-              <DisqusThread id={slug} path={slug} title={title} />
-            </div>
-          </article>
-        </div>
-      </Layout>
-    );
-  }
-}
+const ArticleTemplate = ({ data }) => {
+  const article = data.contentfulArticle;
+  const { title, slug, contentModules, author } = article;
+  return (
+    <Layout>
+      <div className="content">
+        <article className="article">
+          <ArticleHeader node={article} />
+          {contentModules &&
+            contentModules.map((module, i) => getArticleModule(module, i))}
+          <Author author={author} />
+          <div className="print:hidden">
+            <DisqusThread id={slug} path={slug} title={title} />
+          </div>
+        </article>
+      </div>
+    </Layout>
+  );
+};
 
 export default ArticleTemplate;
 
+// SEO
+export const Head = ({ data }) => {
+  const article = data.contentfulArticle;
+  const { title, slug, contentModules, featureImage, publishDate, updatedAt } =
+    article;
+  const featuredImageUrl =
+    featureImage && featureImage.file ? featureImage.file.url : "";
+  const excerpt =
+    contentModules !== null
+      ? contentModules[0].copy.childMarkdownRemark.excerpt
+      : "";
+  return (
+    <>
+      <OG
+        title={title}
+        locale="en-US"
+        type="article"
+        description={excerpt}
+        url={`https://chocolate-free.com/article/${slug}`}
+        siteName="Chocolate Free"
+        updateTime={updatedAt}
+        publishedTime={publishDate}
+        image={`https:${featuredImageUrl}?w=1200&h=630`}
+        imageSecure={`https:${featuredImageUrl}?w=1200&h=630`}
+      />
+
+      <Article
+        updateTime={updatedAt}
+        publishedTime={publishDate}
+        url={`https://chocolate-free.com/article/${slug}`}
+      />
+
+      <Twitter
+        title={title}
+        description={excerpt}
+        image={`https:${featuredImageUrl}?w=1200&h=630`}
+      />
+      <General title={title} description={excerpt} />
+    </>
+  );
+};
 export async function config() {
   // Optionally use GraphQL here
   const { data } = graphql`

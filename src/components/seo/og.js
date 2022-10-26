@@ -1,7 +1,6 @@
 import React from "react";
-import Helmet from "react-helmet";
 
-const og = ({
+const OG = ({
   locale,
   type,
   title,
@@ -14,7 +13,7 @@ const og = ({
   imageSecure,
 }) => {
   return (
-    <Helmet>
+    <>
       <meta property="og:locale" content={locale} />
       <meta property="og:type" content={type} />
       <meta property="og:title" content={title} />
@@ -27,8 +26,8 @@ const og = ({
       <meta property="og:image:secure_url" content={imageSecure} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
-    </Helmet>
+    </>
   );
 };
 
-export default og;
+export default OG;
