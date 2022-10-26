@@ -1,7 +1,7 @@
 import React from "react";
 import Helmet from "react-helmet";
 
-function Person() {
+const Person = () => {
   return (
     <Helmet>
       <script type="application/ld+json">
@@ -24,6 +24,6 @@ function Person() {
       </script>
     </Helmet>
   );
-}
+};
 
 export default Person;

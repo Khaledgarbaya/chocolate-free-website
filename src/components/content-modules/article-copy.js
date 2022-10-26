@@ -1,19 +1,13 @@
-import React, { Component } from "react";
-import * as PropTypes from "prop-types";
+import React from "react";
 
-class ArticleCopy extends Component {
-  render() {
-    const { html } = this.props.data.copy.childMarkdownRemark;
-    return (
-      <section
-        className="p-2 text-paragraph block  print:hidden"
-        dangerouslySetInnerHTML={{ __html: html }}
-      />
-    );
-  }
-}
-
-ArticleCopy.propTypes = {
-  data: PropTypes.object.isRequired,
+const ArticleCopy = ({ data }) => {
+  const { html } = data.copy.childMarkdownRemark;
+  return (
+    <section
+      className="p-2 text-paragraph block  print:hidden"
+      dangerouslySetInnerHTML={{ __html: html }}
+    />
+  );
 };
+
 export default ArticleCopy;
