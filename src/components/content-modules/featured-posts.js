@@ -1,23 +1,15 @@
-import React, { Component } from 'react'
-import PostCard from '../post-card'
-import PropTypes from 'prop-types'
+import React from "react";
+import PostCard from "../post-card";
 
-class FeaturedPosts extends Component {
-  render () {
-    const {
-      data
-    } = this.props
-    return (
-      <div className="featured-posts content-module" >
-          <section className='posts' >
-            {data.posts.map((post, i) => <PostCard post={post} key={i}/>)}
-          </section>
-      </div>
-    )
-  }
-}
-
-FeaturedPosts.propTypes = {
-  data: PropTypes.object.isRequired
-}
-export default FeaturedPosts
+const FeaturedPosts = ({ data }) => {
+  return (
+    <div className="featured-posts content-module">
+      <section className="posts">
+        {data.posts.map((post, i) => (
+          <PostCard post={post} key={i} />
+        ))}
+      </section>
+    </div>
+  );
+};
+export default FeaturedPosts;

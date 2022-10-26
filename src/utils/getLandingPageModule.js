@@ -1,6 +1,6 @@
 import FeaturedPosts from "../components/content-modules/featured-posts";
-import LandingPageImage from "../components/content-modules/LandingPageImage";
-import LandingPageGallery from "../components/content-modules/LandingPageGallery";
+import LandingPageImage from "../components/content-modules/landing-page-image";
+import LandingPageGallery from "../components/content-modules/landing-page-gallery";
 import React from "react";
 
 const componentsMap = {

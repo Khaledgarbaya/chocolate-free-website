@@ -1,18 +1,15 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Helmet from 'react-helmet';
+import React from "react";
+import PropTypes from "prop-types";
+import Helmet from "react-helmet";
 
-function General({
-  title,
-  description,
-}) {
+const General = ({ title, description }) => {
   return (
     <Helmet>
       <title>{title} | Chocolate Free</title>
       <meta name="description" content={description} />
     </Helmet>
   );
-}
+};
 
 General.propTypes = {
   title: PropTypes.string.isRequired,
