@@ -1,21 +1,19 @@
-import React from 'react'
-import Recipe from '../components/content-modules/article-recipe'
-import ArticleImage from '../components/content-modules/article-image'
-import ArticleTwoImages from '../components/content-modules/article-two-images'
-import ArticleCopy from '../components/content-modules/article-copy'
-
-const componentsMap = {
-  ContentfulArticleRecipe: Recipe,
-  ContentfulArticleCopy: ArticleCopy,
-  ContentfulArticleImage: ArticleImage,
-  ContentfulArticleTwoImages: ArticleTwoImages
-}
-export const getArticleModule = (module, index) => {
-  const Component = componentsMap[module.internal.type]
-  if (Component) {
-    return <Component data={module} key={index}/>
+import React from "react";
+import { Slice } from "gatsby";
+const SlicesMap = {
+  ContentfulArticleRecipe: "recipe",
+  ContentfulArticleCopy: "copy",
+  ContentfulArticleImage: "image",
+  ContentfulArticleTwoImages: "twoImages",
+};
+export const getArticleModule = (module, index, id) => {
+  const sliceAlias = SlicesMap[module.internal.type];
+  if (sliceAlias) {
+    return (
+      <Slice alias={`${sliceAlias}-${index}-${id}`} data={module} key={index} />
+    );
   }
-  return null
-}
+  return null;
+};
 
-export default getArticleModule
+export default getArticleModule;
