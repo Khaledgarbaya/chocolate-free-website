@@ -6442,7 +6442,7 @@ gatsby-parcel-config@^1.0.0-next.2:
     "@parcel/transformer-js" "2.6.2"
     "@parcel/transformer-json" "2.6.2"
 
-gatsby-plugin-algolia@next:
+gatsby-plugin-algolia@^0.26.0:
   version "0.26.0"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-algolia/-/gatsby-plugin-algolia-0.26.0.tgz#9ed2869f51f82fcff4cb815872e679b8e2502c30"
   integrity sha512-rBYTAPjg+NZA6JL2m6kaNwo2NlnUnSkF8LeL8ImMhvTJBor7w/NTUJh+/GPCI8Su0RbLfj98DE7C0Q4usNgQtg==
@@ -6535,10 +6535,10 @@ gatsby-plugin-page-creator@^5.0.0-next.4:
     globby "^11.1.0"
     lodash "^4.17.21"
 
-gatsby-plugin-postcss@next:
-  version "6.0.0-next.1"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-postcss/-/gatsby-plugin-postcss-6.0.0-next.1.tgz#64ff15f66da84a262dfd38289224d227a205934e"
-  integrity sha512-ODytj9BPPRruCFB94spUpSzLeVI/INdYk1H5F+L7UTP0jvOZfGF8sr0hvN6vKJY13pushdwkoNPgntQjX4dnDA==
+gatsby-plugin-postcss@^5.24.0:
+  version "5.24.0"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-postcss/-/gatsby-plugin-postcss-5.24.0.tgz#0591fc1e3d3af7b3002238e3dd317a2ffd46f69d"
+  integrity sha512-QLQ49vXmYdbXKKpigGsfK5Ny+/UhbeETzYIo92DFbiS+NgBz9Rt9kGeppedOO2jv+CxcN4ebSRwvyLc9U5vFUQ==
   dependencies:
     "@babel/runtime" "^7.15.4"
     postcss-loader "^4.3.0"
