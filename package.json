@@ -27,7 +27,7 @@
     "gatsby-plugin-google-analytics": "next",
     "gatsby-plugin-image": "next",
     "gatsby-plugin-manifest": "next",
-    "gatsby-plugin-postcss": "^6.1.0",
+    "gatsby-plugin-postcss": "^5.24.0",
     "gatsby-plugin-purgecss": "next",
     "gatsby-plugin-react-helmet": "next",
     "gatsby-plugin-sass": "next",
