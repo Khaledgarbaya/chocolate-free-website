@@ -6,11 +6,18 @@ const SlicesMap = {
   ContentfulArticleImage: "image",
   ContentfulArticleTwoImages: "twoImages",
 };
-export const getArticleModule = (module, index, id) => {
+export const getArticleModule = (module, index) => {
   const sliceAlias = SlicesMap[module.internal.type];
-  if (sliceAlias) {
+  // this is weird but trust me it works, hopefully it will be fixed in the future
+  if (sliceAlias === "recipe") {
+    return <Slice allowEmpty={true} alias="recipe" data={module} key={index} />;
+  } else if (sliceAlias === "copy") {
+    return <Slice allowEmpty={true} alias="copy" data={module} key={index} />;
+  } else if (sliceAlias === "image") {
+    return <Slice allowEmpty={true} alias="image" data={module} key={index} />;
+  } else if (sliceAlias === "twoImages") {
     return (
-      <Slice alias={`${sliceAlias}-${index}-${id}`} data={module} key={index} />
+      <Slice allowEmpty={true} alias="twoImages" data={module} key={index} />
     );
   }
   return null;

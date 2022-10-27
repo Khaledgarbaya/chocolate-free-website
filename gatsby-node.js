@@ -1,157 +1,149 @@
 const _ = require(`lodash`);
 
-const getSliceAliasForContentModel = (
-  { internal: { type }, id },
-  containerId,
-  index
-) => {
-  switch (type) {
-    case "ContentfulArticleRecipe":
-      return { [`recipe-${index}-${containerId}`]: `recipe-${id}` };
-    case "ContentfulArticleCopy":
-      return { [`copy-${index}-${containerId}`]: `copy-${id}` };
-    case "ContentfulArticleTwoImages":
-      return { [`twoImages-${index}-${containerId}`]: `twoImages-${id}` };
-    case "ContentfulArticleImage":
-      return { [`image-${index}-${containerId}`]: `image-${id}` };
-    default:
-      throw new Error(`Unknown content model type: ${type}`);
-  }
-};
-exports.createPages = ({ graphql, actions }) => {
+exports.createPages = async ({ graphql, actions }) => {
   const { createSlice, createRedirect, createPage } = actions;
   createSlice({
     id: `main-menu`,
     component: require.resolve(`./src/components/main-menu.js`),
   });
-  return new Promise((resolve, reject) => {
-    graphql(
-      `
-        {
-          allContentfulArticle(sort: { publishDate: DESC }) {
-            edges {
-              node {
-                id
-                slug
-                contentModules {
-                  ... on ContentfulArticleRecipe {
-                    internal {
-                      type
-                    }
-                    id
+  // create Slice for each module
+  createSlice({
+    id: "recipe",
+    component: require.resolve(
+      `./src/components/content-modules/article-recipe.js`
+    ),
+  });
+  createSlice({
+    id: "copy",
+    component: require.resolve(
+      `./src/components/content-modules/article-copy.js`
+    ),
+  });
+  createSlice({
+    id: "image",
+    component: require.resolve(
+      `./src/components/content-modules/article-image.js`
+    ),
+  });
+  createSlice({
+    id: "twoImages",
+    component: require.resolve(
+      `./src/components/content-modules/article-two-images.js`
+    ),
+  });
+  const result = await graphql(
+    `
+      {
+        allContentfulArticle(sort: { publishDate: DESC }) {
+          edges {
+            node {
+              id
+              slug
+              contentModules {
+                ... on ContentfulArticleRecipe {
+                  internal {
+                    type
                   }
-                  ... on ContentfulArticleCopy {
-                    internal {
-                      type
-                    }
-                    id
-                  }
-                  ... on ContentfulArticleTwoImages {
-                    internal {
-                      type
-                    }
-                    id
-                  }
-                  ... on ContentfulArticleImage {
-                    internal {
-                      type
-                    }
-                    id
-                  }
+                  id
                 }
-              }
-            }
-          }
-          allContentfulNavigation {
-            edges {
-              node {
-                navigationElements {
-                  page {
-                    slug
+                ... on ContentfulArticleCopy {
+                  internal {
+                    type
                   }
+                  id
+                }
+                ... on ContentfulArticleTwoImages {
+                  internal {
+                    type
+                  }
+                  id
+                }
+                ... on ContentfulArticleImage {
+                  internal {
+                    type
+                  }
+                  id
                 }
               }
             }
           }
         }
-      `
-    )
-      .then((result) => {
-        if (result.errors) {
-          reject(result.errors);
-        }
-        _.each(result.data.allContentfulNavigation.edges, (edge) => {
-          _.each(edge.node.navigationElements, (navElement) => {
-            createRedirect({
-              fromPath: `${navElement.page.slug}.html`,
-              toPath: `${edge.node.slug}`,
-              isPermanent: true,
-            });
-          });
-        });
-        _.each(result.data.allContentfulArticle.edges, (edge, index) => {
-          let slices = [];
-          if (edge.node.contentModules && edge.node.contentModules.length > 0) {
-            slices = edge.node.contentModules.map((contentModule, index) => {
-              return getSliceAliasForContentModel(
-                contentModule,
-                edge.node.id,
-                index
-              );
-            });
+        allContentfulNavigation {
+          edges {
+            node {
+              navigationElements {
+                page {
+                  slug
+                }
+              }
+            }
           }
-          slices.forEach((slice) => {
-            const sliceAlias = Object.keys(slice)[0];
-            let component = null;
-            if (sliceAlias.indexOf("recipe") > -1) {
-              component = require.resolve(
-                `./src/components/content-modules/article-recipe.js`
-              );
-            } else if (sliceAlias.indexOf("copy") > -1) {
-              component = require.resolve(
-                `./src/components/content-modules/article-copy.js`
-              );
-            } else if (sliceAlias.indexOf("twoImages") > -1) {
-              component = require.resolve(
-                `./src/components/content-modules/article-two-images.js`
-              );
-            } else if (sliceAlias.indexOf("image") > -1) {
-              component = require.resolve(
-                `./src/components/content-modules/article-image.js`
-              );
-            }
-            if (component) {
-              console.log(Object.values(slice)[0]);
-              createSlice({
-                id: Object.values(slice)[0],
-                component,
-              });
-            }
-          });
+        }
+      }
+    `
+  );
+  if (result.errors) {
+    throw result.errors;
+  }
+  result.data.allContentfulNavigation.edges.forEach((edge) => {
+    edge.node.navigationElements.forEach((navElement) => {
+      createRedirect({
+        fromPath: `${navElement.page.slug}.html`,
+        toPath: `${edge.node.slug}`,
+        isPermanent: true,
+      });
+    });
+  });
+  result.data.allContentfulArticle.edges.forEach((edge) => {
+    const noSlices = {};
 
-          createPage({
-            path: `article/${edge.node.slug}`,
-            component: require.resolve(`./src/templates/article-template.js`),
-            context: {
-              id: edge.node.id,
-            },
-            slices: {
-              ...slices.reduce(
-                (acc, slice) => ({
-                  ...acc,
-                  [Object.keys(slice)[0]]: Object.values(slice)[0],
-                }),
-                {}
-              ),
-            },
-          });
-          createRedirect({
-            fromPath: `/article/${edge.node.slug}.html`,
-            toPath: `/article/${edge.node.slug}`,
-            isPermanent: true,
-          });
-        });
-      })
-      .then(resolve);
+    if (edge.node.contentModules) {
+      const slices = new Set(
+        edge.node.contentModules.map((module) => {
+          switch (module.internal.type) {
+            case `ContentfulArticleRecipe`:
+              return "recipe";
+            case `ContentfulArticleCopy`:
+              return "copy";
+            case `ContentfulArticleTwoImages`:
+              return "twoImages";
+            case `ContentfulArticleImage`:
+              return "image";
+            default:
+              return null;
+          }
+        })
+      );
+
+      ["recipe ", "copy", "twoImages", "image"].forEach((slice) => {
+        if (!slices.has(slice)) {
+          console.log(`skipping ${slice} slice`);
+          noSlices[slice] = null;
+        }
+      });
+    } else {
+      noSlices["recipe"] = null;
+      noSlices["copy"] = null;
+      noSlices["twoImages"] = null;
+      noSlices["image"] = null;
+    }
+
+    // create a page for each article
+    createPage({
+      path: `article/${edge.node.slug}`,
+      component: require.resolve(`./src/templates/article-template.js`),
+      context: {
+        id: edge.node.id,
+      },
+      slices: {
+        ...noSlices,
+      },
+    });
+    // create a redirect for each article since url structure changed
+    createRedirect({
+      fromPath: `/article/${edge.node.slug}.html`,
+      toPath: `/article/${edge.node.slug}`,
+      isPermanent: true,
+    });
   });
 };
