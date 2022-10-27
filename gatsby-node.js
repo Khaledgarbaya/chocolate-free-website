@@ -1,5 +1,3 @@
-const _ = require(`lodash`);
-
 exports.createPages = async ({ graphql, actions }) => {
   const { createSlice, createRedirect, createPage } = actions;
   createSlice({
@@ -95,6 +93,9 @@ exports.createPages = async ({ graphql, actions }) => {
     });
   });
   result.data.allContentfulArticle.edges.forEach((edge) => {
+    // for each page we create we check if it needs to use all the slices or not
+    // if it's not the case we set the non used slices alias to null
+    // this will tell gatsby to not load them thus saving some bundle size
     const noSlices = {};
 
     if (edge.node.contentModules) {
