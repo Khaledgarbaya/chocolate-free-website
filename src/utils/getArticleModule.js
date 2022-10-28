@@ -8,7 +8,7 @@ const SlicesMap = {
 };
 export const getArticleModule = (module, index) => {
   const sliceAlias = SlicesMap[module.internal.type];
-  // this is weird but trust me it works, hopefully it will be fixed in the future
+  // this is weird but trust me it works, this to help gatsby do the static analysis
   if (sliceAlias === "recipe") {
     return <Slice allowEmpty={true} alias="recipe" data={module} key={index} />;
   } else if (sliceAlias === "copy") {
