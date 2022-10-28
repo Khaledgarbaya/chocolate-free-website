@@ -93,53 +93,6 @@ exports.createPages = async ({ graphql, actions }) => {
     });
   });
   result.data.allContentfulArticle.edges.forEach((edge) => {
-    // for each page we create we check if it needs to use all the slices or not
-    // if it's not the case we set the non used slices alias to null
-    // this will tell gatsby to not load them thus saving some bundle size
-    const noSlices = {};
-
-    if (edge.node.contentModules) {
-      const slices = new Set(
-        edge.node.contentModules.map((module) => {
-          switch (module.internal.type) {
-            case `ContentfulArticleRecipe`:
-              return "recipe";
-            case `ContentfulArticleCopy`:
-              return "copy";
-            case `ContentfulArticleTwoImages`:
-              return "twoImages";
-            case `ContentfulArticleImage`:
-              return "image";
-            default:
-              return null;
-          }
-        })
-      );
-
-      ["recipe ", "copy", "twoImages", "image"].forEach((slice) => {
-        if (!slices.has(slice)) {
-          console.log(`skipping ${slice} slice`);
-          noSlices[slice] = null;
-        }
-      });
-    } else {
-      noSlices["recipe"] = null;
-      noSlices["copy"] = null;
-      noSlices["twoImages"] = null;
-      noSlices["image"] = null;
-    }
-
-    // create a page for each article
-    createPage({
-      path: `article/${edge.node.slug}`,
-      component: require.resolve(`./src/templates/article-template.js`),
-      context: {
-        id: edge.node.id,
-      },
-      slices: {
-        ...noSlices,
-      },
-    });
     // create a redirect for each article since url structure changed
     createRedirect({
       fromPath: `/article/${edge.node.slug}.html`,
