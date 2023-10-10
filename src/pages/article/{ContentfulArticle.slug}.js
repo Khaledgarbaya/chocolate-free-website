@@ -73,25 +73,6 @@ export const Head = ({ data }) => {
     </>
   );
 };
-export async function config() {
-  // Optionally use GraphQL here
-  const { data } = graphql`
-    {
-      allContentfulArticle(sort: { publishDate: DESC }) {
-        nodes {
-          slug
-        }
-      }
-    }
-  `;
-  return ({ params }) => {
-    const slugs = data.allContentfulArticle.nodes.map((s) => s.slug);
-    return {
-      defer: slugs.indexOf(params.slug) > 9,
-    };
-  };
-}
-
 export const pageQuery = graphql`
   query articleQuery($id: String!) {
     contentfulArticle(id: { eq: $id }) {
